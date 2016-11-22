@@ -4,14 +4,27 @@ class UserDAO extends DAO{
     public function insere(User $user){
         
         $sql = "INSERT INTO user
-                    (nome)
+                    (nome),
+                    (email),
+                    (senha),
+                    (dataNascimento),
+                    (tipo)
                 VALUES
-                    (:nome)";
+                    (:nome),
+                    (:email),
+                    (:senha),
+                    (:dataNascimento),
+                    (:tipo)
+                ";
         
         $query = $this->db()->prepare($sql);
         
         $query->execute(array(
-            ':nome' => $user->getNome()
+            ':nome' => $user->getNome(),
+            ':email' => $user->getEmail(),
+            ':senha' => $user->getSenha(),
+            ':dataNascimento' => $user->getDataNascimento,
+            ':tipo' => $user->getTipo(),
         ));
         
         return $this->db()->lastInsertId();
