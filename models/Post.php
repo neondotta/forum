@@ -1,85 +1,111 @@
 <?php
-class UserDAO extends DAO{
-	
-    public function insere(User $user){
-        
-        $sql = "INSERT INTO user
-                    (nome)
-                VALUES
-                    (:nome)";
-        
-        $query = $this->db()->prepare($sql);
-        
-        $query->execute(array(
-            ':nome' => $user->getNome()
-        ));
-        
-        return $this->db()->lastInsertId();
-                    
-    }
-    
-    
-    public function getLista(){
-        
-        $sql = "SELECT * from user order by nome";        
-        
-        $query = $this->db()->query($sql);
-        
-        $listaUsers = array();
-        
-        foreach ($query as $dadosUser){
-            
-            $user = new User();
-            $user->setIdUser($dadosUser['idUser']);
-            $user->setNome($dadosUser['nome']);
-            array_push($listaUsers, $user);
-        }
-        
-        return $listaUsers;
-    }
-    
-    
-    public function getUser($id){
-        
-        $sql = "SELECT * from user where idUser = :id";        
-        $query = $this->db()->prepare($sql);
-        
-        $query->execute(array(':id' => $id));
-        
-        $dadosUser = $query->fetch(PDO::FETCH_ASSOC);
+class Post {
+	private $titulo;
+	private $texto;
+	private $idUser;
+	private $idTopico;
 
-        $user = new User();
-        $user->setIdUser($dadosUser['idUser']);
-        $user->setNome($dadosUser['nome']);
-                
-        return $user;
-        
+	function __construct($titulo, $texto, $idUser, $idTopico) {
+		$this->setTitulo($titulo);
+		$this->setTexto($texto);
+		$this->setIdUser($idUser);
+		$this->setIdTopico($idTopico);
+	}
+
+    /**
+     * Get the value of Titulo
+     *
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
     }
-    
-    
-    public function atualiza(User $user){
-        
-        $sql = "update user set nome = :nome where idUser = :id";
-            
-        $query = $this->db()->prepare($sql);
-            
-        return $query->execute(array(
-            ':nome' => $user->getNome(),
-            ':id' => $user->getIdUser()
-        ));
-        
+
+    /**
+     * Set the value of Titulo
+     *
+     * @param mixed titulo
+     *
+     * @return self
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
     }
-    
-    public function excluiUser($id){
-        
-        $sql = "delete from user where idUser = :id";
-            
-        $query = $this->db()->prepare($sql);
-            
-        return $query->execute(array(':id' => $id));
-        
+
+    /**
+     * Get the value of Texto
+     *
+     * @return mixed
+     */
+    public function getTexto()
+    {
+        return $this->texto;
     }
-    
-    
-    
-}   
+
+    /**
+     * Set the value of Texto
+     *
+     * @param mixed texto
+     *
+     * @return self
+     */
+    public function setTexto($texto)
+    {
+        $this->texto = $texto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Id User
+     *
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set the value of Id User
+     *
+     * @param mixed idUser
+     *
+     * @return self
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Id Topico
+     *
+     * @return mixed
+     */
+    public function getIdTopico()
+    {
+        return $this->idTopico;
+    }
+
+    /**
+     * Set the value of Id Topico
+     *
+     * @param mixed idTopico
+     *
+     * @return self
+     */
+    public function setIdTopico($idTopico)
+    {
+        $this->idTopico = $idTopico;
+
+        return $this;
+    }
+
+}
