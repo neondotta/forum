@@ -46,45 +46,44 @@ class PostDAO extends DAO
     }
 
     public function getPost($id) {
-        $sql = "SELECT * from user where idUser = :id";
+        $sql = "SELECT p.idPost, p.titulo, p.texto, p.dataCriacao, p.dataAtualizacao, u.idUser, u.nome FROM post p
+                JOIN user u ON (p.idUser = u.idUser)
+                WHERE p.idPost = :id";
+
         $query = $this->db()->prepare($sql);
 
         $query->execute(array(':id' => $id));
 
-        $dadosUser = $query->fetch(PDO::FETCH_ASSOC);
+        $dadosPost = $query->fetch(PDO::FETCH_ASSOC);
 
-        $user = new User();
-        $user->setIdUser($dadosUser['idUser']);
-        $user->setNome($dadosUser['nome']);
+        $post = new Post($dadosPost['titulo'], $dadosPost['texto'], new User($dadosPost['nome']));
+        $post->setIdPost($dadosPost['idPost']);
+        $post->setDataCriacao($dadosPost['dataCriacao']);
+        $post->setDataAtualizacao($dadosPost['dataAtualizacao']);
+        $post->getUser()->setIdUser($dadosPost['idUser']);
 
-        return $user;
-
+        return $post;
     }
 
-
-    public function atualiza(User $user){
-
-        $sql = "update user set nome = :nome where idUser = :id";
+    public function atualiza(Post $post) {
+        $sql = "UPDATE post p
+                SET p.titulo=:titulo, p.texto=:texto
+                WHERE p.idPost = :id";
 
         $query = $this->db()->prepare($sql);
 
         return $query->execute(array(
-            ':nome' => $user->getNome(),
-            ':id' => $user->getIdUser()
+            ':titulo' => $post->getTitulo(),
+            ':texto' => $post->getTexto(),
+            ':id' => $post->getIdPost()
         ));
-
     }
 
-    public function excluiUser($id){
-
-        $sql = "delete from user where idUser = :id";
+    public function exclui($id) {
+        $sql = "DELETE FROM post WHERE idPost = :id";
 
         $query = $this->db()->prepare($sql);
 
         return $query->execute(array(':id' => $id));
-
     }
-
-
-
 }
