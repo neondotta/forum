@@ -22,20 +22,20 @@ class PostDAO extends DAO
     }
 
 
-    public function getLista() {
+    public function getLista($idTopico) {
         $sql = "SELECT p.idPost, p.titulo, u.nome FROM post p
                 JOIN user u ON (p.idUser = u.idUser)
+                WHERE p.idTopico = :idTopico
                 ORDER BY idPost DESC";
 
-        $query = $this->db()->query($sql);
+        $query = $this->db()->prepare($sql);
+
+        $query->execute(array(':idTopico' => $idTopico));
 
         $listaPosts = array();
 
-        foreach ($query as $dadosPost){
-            $post = new Post();
-            $post->setIdUser($dadosPost['idPost']);
-            $post->setTitulo($dadosPost['titulo']);
-            $post->setUser(new User($dadosPost['nome']));
+        foreach ($query as $dadosPost) {
+            $post = new Post($dadosPost['titulo'], new User($dadosPost['nome']));
 
             array_push($listaPosts, $post);
         }
@@ -44,8 +44,7 @@ class PostDAO extends DAO
     }
 
 
-    public function getUser($id){
-
+    public function getPost($id) {
         $sql = "SELECT * from user where idUser = :id";
         $query = $this->db()->prepare($sql);
 
