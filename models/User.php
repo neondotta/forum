@@ -1,13 +1,16 @@
 <?php
 class User {
-	
+
     protected $idUser;
     protected $nome;
 	protected $email;
 	protected $senha;
 	protected $dataNascimento;
 	protected $tipo;
-    
+
+	function __construct($nome) {
+		$this->setNome($nome);
+	}
 
 	public function getIdUser() {
 		return $this->idUser;
@@ -16,8 +19,8 @@ class User {
 	public function setIdUser($idUser) {
 		$this->idUser = $idUser;
 	}
-        
-    
+
+
     public function getNome() {
 		return $this->nome;
 	}
