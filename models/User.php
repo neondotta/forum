@@ -13,7 +13,7 @@ class User {
 		return $this->idUser;
 	}
 
-	public function setIdUser($idUser {
+	public function setIdUser($idUser) {
 		$this->idUser = $idUser;
 	}
         

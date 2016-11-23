@@ -4,17 +4,17 @@ class UserDAO extends DAO{
     public function insere(User $user){
         
         $sql = "INSERT INTO user
-                    (nome),
-                    (email),
-                    (senha),
-                    (dataNascimento),
-                    (tipo)
+                    (nome,
+                        email,
+                        senha,
+                        dataNascimento,
+                        tipo)
                 VALUES
-                    (:nome),
-                    (:email),
-                    (:senha),
-                    (:dataNascimento),
-                    (:tipo)
+                    (:nome,
+                        :email,
+                        :senha,
+                        :dataNascimento,
+                        :tipo)
                 ";
         
         $query = $this->db()->prepare($sql);
@@ -23,8 +23,8 @@ class UserDAO extends DAO{
             ':nome' => $user->getNome(),
             ':email' => $user->getEmail(),
             ':senha' => $user->getSenha(),
-            ':dataNascimento' => $user->getDataNascimento,
-            ':tipo' => $user->getTipo(),
+            ':dataNascimento' => $user->getDataNascimento(),
+            ':tipo' => $user->getTipo()
         ));
         
         return $this->db()->lastInsertId();
@@ -43,8 +43,12 @@ class UserDAO extends DAO{
         foreach ($query as $dadosUser){
             
             $user = new User();
-            $user->setIdUser($dadosUser['idUser']);
-            $user->setNome($dadosUser['nome']);
+                $user->setIdUser($dadosUser['idUser']);
+                $user->setNome($dadosUser['nome']);
+                $user->setEmail($dadosUser['email']);
+                $user->setSenha($dadosUser['senha']);
+                $user->setDataNascimento($dadosUser['dataNascimento']);
+                $user->setTipo($dadosUser['tipo']);
             array_push($listaUsers, $user);
         }
         
@@ -62,8 +66,12 @@ class UserDAO extends DAO{
         $dadosUser = $query->fetch(PDO::FETCH_ASSOC);
 
         $user = new User();
-        $user->setIdUser($dadosUser['idUser']);
-        $user->setNome($dadosUser['nome']);
+            $user->setIdUser($dadosUser['idUser']);
+            $user->setNome($dadosUser['nome']);
+            $user->setEmail($dadosUser['email']);
+            $user->setSenha($dadosUser['senha']);
+            $user->setDataNascimento($dadosUser['dataNascimento']);
+            $user->setTipo($dadosUser['tipo']);
                 
         return $user;
         
@@ -72,13 +80,25 @@ class UserDAO extends DAO{
     
     public function atualiza(User $user){
         
-        $sql = "update user set nome = :nome where idUser = :id";
+        $sql = "update user 
+                set 
+                    nome = :nome,
+                    email = :email,
+                    senha = :senha,
+                    dataNascimento = :dataNascimento,
+                    tipo = :tipo
+                where 
+                    idUser = :id";
             
         $query = $this->db()->prepare($sql);
             
         return $query->execute(array(
+            ':id' => $user->getIdUser(),
             ':nome' => $user->getNome(),
-            ':id' => $user->getIdUser()
+            ':email' => $user->getEmail(),
+            ':senha' => $user->getSenha(),
+            ':dataNascimento' => $user->getDataNascimento(),
+            ':tipo' => $user->getTipo()
         ));
         
     }
