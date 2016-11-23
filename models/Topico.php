@@ -5,8 +5,12 @@ class User {
 	protected $nome;
 	protected $dataCriacao;
 	protected $dataAtualizacao;
+	protected $user;
+	protected $forum;
 
-	
+	function __construct($nome){
+		$this->setNome($nome);
+	}
 
     /**
      * Gets the value of idTopico.
@@ -100,6 +104,54 @@ class User {
     protected function setDataAtualizacao($dataAtualizacao)
     {
         $this->dataAtualizacao = $dataAtualizacao;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of user.
+     *
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Sets the value of user.
+     *
+     * @param mixed $user the user
+     *
+     * @return self
+     */
+    protected function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of forum.
+     *
+     * @return mixed
+     */
+    public function getForum()
+    {
+        return $this->forum;
+    }
+
+    /**
+     * Sets the value of forum.
+     *
+     * @param mixed $forum the forum
+     *
+     * @return self
+     */
+    protected function setForum($forum)
+    {
+        $this->forum = $forum;
 
         return $this;
     }
