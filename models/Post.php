@@ -1,16 +1,41 @@
 <?php
 class Post {
+	private $idPost;
 	private $titulo;
 	private $texto;
-	private $idUser;
-	private $idTopico;
+	private $user;
+	private $topico;
 
-	function __construct($titulo, $texto, $idUser, $idTopico) {
+	function __construct($titulo, $texto, $user, $topico) {
 		$this->setTitulo($titulo);
 		$this->setTexto($texto);
-		$this->setIdUser($idUser);
-		$this->setIdTopico($idTopico);
+		$this->setIdUser($user);
+		$this->setIdTopico($topico);
 	}
+
+    /**
+     * Get the value of Id Post
+     *
+     * @return mixed
+     */
+    public function getIdPost()
+    {
+        return $this->idPost;
+    }
+
+    /**
+     * Set the value of Id Post
+     *
+     * @param mixed idPost
+     *
+     * @return self
+     */
+    public function setIdPost($idPost)
+    {
+        $this->idPost = $idPost;
+
+        return $this;
+    }
 
     /**
      * Get the value of Titulo
@@ -61,49 +86,49 @@ class Post {
     }
 
     /**
-     * Get the value of Id User
+     * Get the value of User
      *
      * @return mixed
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->idUser;
+        return $this->user;
     }
 
     /**
-     * Set the value of Id User
+     * Set the value of User
      *
-     * @param mixed idUser
+     * @param mixed user
      *
      * @return self
      */
-    public function setIdUser($idUser)
+    public function setUser($user)
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get the value of Id Topico
+     * Get the value of Topico
      *
      * @return mixed
      */
-    public function getIdTopico()
+    public function getTopico()
     {
-        return $this->idTopico;
+        return $this->topico;
     }
 
     /**
-     * Set the value of Id Topico
+     * Set the value of Topico
      *
-     * @param mixed idTopico
+     * @param mixed topico
      *
      * @return self
      */
-    public function setIdTopico($idTopico)
+    public function setTopico($topico)
     {
-        $this->idTopico = $idTopico;
+        $this->topico = $topico;
 
         return $this;
     }
