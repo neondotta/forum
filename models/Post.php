@@ -3,14 +3,15 @@ class Post {
 	private $idPost;
 	private $titulo;
 	private $texto;
+	private $dataCriacao;
+	private $dataAtualizacao;
 	private $user;
 	private $topico;
 
-	function __construct($titulo, $texto, $user, $topico) {
+	function __construct($titulo, $texto, $user) {
 		$this->setTitulo($titulo);
 		$this->setTexto($texto);
 		$this->setIdUser($user);
-		$this->setIdTopico($topico);
 	}
 
     /**
