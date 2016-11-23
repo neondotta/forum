@@ -13,17 +13,15 @@ class PostDAO extends DAO
         $query->execute(array(
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
-            ':senha' => $post->getDataCriacao(),
-            ':idUser' => $post->getIdUser(),
-            ':idTopico' => $post->getIdTopico(),
+            ':idUser' => $post->getUser()->getIdUser(),
+            ':idTopico' => $post->getTopico()->getIdTopico(),
         ));
 
         return $this->db()->lastInsertId();
     }
 
-
     public function getLista($idTopico) {
-        $sql = "SELECT p.idPost, p.titulo, u.nome FROM post p
+        $sql = "SELECT p.idPost, p.titulo, p.texto, p.dataCriacao, p.dataAtualizacao, u.idUser, u.nome FROM post p
                 JOIN user u ON (p.idUser = u.idUser)
                 WHERE p.idTopico = :idTopico
                 ORDER BY idPost DESC";
@@ -35,14 +33,17 @@ class PostDAO extends DAO
         $listaPosts = array();
 
         foreach ($query as $dadosPost) {
-            $post = new Post($dadosPost['titulo'], new User($dadosPost['nome']));
+            $post = new Post($dadosPost['titulo'], $dadosPost['texto'], new User($dadosPost['nome']));
+            $post->setIdPost($dadosPost['idPost']);
+            $post->setDataCriacao($dadosPost['dataCriacao']);
+            $post->setDataAtualizacao($dadosPost['dataAtualizacao']);
+            $post->getUser()->setIdUser($dadosPost['idUser']);
 
             array_push($listaPosts, $post);
         }
 
         return $listaPosts;
     }
-
 
     public function getPost($id) {
         $sql = "SELECT * from user where idUser = :id";
