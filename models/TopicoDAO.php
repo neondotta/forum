@@ -30,7 +30,7 @@ class TopicoDAO extends DAO{
     }
     
     
-    public function getLista(){
+    public function getLista($idForum){
         
         $sql = "SELECT 
                     t.nome,
@@ -43,8 +43,10 @@ class TopicoDAO extends DAO{
                 WHERE t.idForum = :idForum;
                 ORDER BY t.nome ASC";        
         
-        $query = $this->db()->query($sql);
+        $query = $this->db()->prepare($sql);
         
+        $query->execute(array(':idForum' => $idForum))
+
         $listaTopico = array();
         
         foreach ($query as $dadosTopico){

@@ -14,7 +14,7 @@ class PostDAO extends DAO
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
             ':idUser' => $post->getUser()->getIdUser(),
-            ':idTopico' => $post->getTopico()->getIdTopico(),
+            ':idTopico' => $post->getTopico()->getIdTopico()
         ));
 
         return $this->db()->lastInsertId();
