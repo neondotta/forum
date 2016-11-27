@@ -77,6 +77,8 @@ class TopicoDAO extends DAO{
             $topico->setIdTopico($dadosTopico['idTopico']);
             $topico->setNome($dadosTopico['nome']);
             $topico->setDataCriacao($dadosTopico['dataCriacao']);
+            $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
+            $topico->setUser($dadosTopico['user']);
                 
         return $topico;
         
@@ -85,20 +87,17 @@ class TopicoDAO extends DAO{
     
     public function atualiza(Topico $topico){
         
-        $sql = "update topico 
-                set 
-                    nome = :nome,
-                    dataCriacao = :dataCriacao,
-                    dataAtualizacao = :dataAtualizacao,
-                where 
+        $sql = "UPDATE topico 
+                SET 
+                    nome = :nome
+                WHERE 
                     idTopico = :id";
             
         $query = $this->db()->prepare($sql);
             
         return $query->execute(array(
             ':id' => $topico->getidTopico(),
-            ':nome' => $topico->getNome(),
-            ':dataCriacao' => $topico->getDataCriacao(),
+            ':nome' => $topico->getNome()
         ));
         
     }
