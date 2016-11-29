@@ -1,19 +1,50 @@
-<form method="post">
-    
-    <label for="nome">Nome:</label><br/>
-    <input type="text" name="nome" id="nome" size="60" value="<?=$vendedor->getNome()?>"/> <br/>
-    
-    <label for="salario">Salário:</label><br/>
-    <input type="text" name="salario" id="salario" size="20" value="<?=$vendedor->getSalario()?>"/> <br/>
-    
-    <label for="comissao">Comissão:</label><br/>
-    <input type="text" name="comissao" id="comissao" size="10" value="<?=$vendedor->getComissao()?>"/> <br/> <br/>
-    
-    <input type="hidden" name="id_vendedor" id="id_vendedor" size="10" value="<?=$vendedor->getIdVendedor()?>"/> <br/> <br/>
-    
-    <input type="submit" value="Salvar"/>     
 
-</form>
+<div class="container">
+  
+  <h2>Cadastro do Usuário</h2>
 
-<br/>
-<a href="/revenda/">Voltar</a>
+	<form method="post">
+
+
+		<div class="form-group">
+	  		<label for="nome">Nome</label>
+	  		<input type="text" class="form-control" id="nome" placeholder="Preencha o nome">
+		</div>
+
+	    <div class="form-group">
+	      <label for="email">Email</label>
+	      <input type="email" class="form-control" id="email" placeholder="Preencha o email">
+	    </div>
+
+	    <div class="form-group">
+	      <label for="dataNascimento">Data Nascimento</label>
+	      <input type="date" class="form-control" id="dataNascimento" placeholder="Preencha a data de nascimento">
+	    </div>
+
+				
+		<div class="form-group">
+      		<label for="tipo">Tipo</label>
+      		<select class="form-control" id="tipo" name="tipo">
+        		<option value="1">Administrador</option>
+        		<option value="2">Moderador</option>
+        		<option value="3">Usuário</option>        		
+      		</select>
+      	</div>
+
+     	<div class="form-group">
+	  		<label for="senha">Senha:</label>
+	  		<input type="password" class="form-control" id="senha" placeholder="Preencha a senha">
+		</div>
+
+		<div class="form-inline">
+
+			<a href="/forum/" class="btn btn-default">Cancelar</a>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+			
+		</div>
+
+	</form>
+
+</div>
+
+

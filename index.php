@@ -20,6 +20,8 @@ spl_autoload_register(function ($class_name) {
 });
 
 
+
+
 if (isset($_GET['r'])) {
 	$requisicao = $_GET['r'];
 }

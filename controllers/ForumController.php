@@ -1,5 +1,5 @@
 <?php
-class UserController {
+class ForumController {
 	
 	public function cadastra() {
 		
