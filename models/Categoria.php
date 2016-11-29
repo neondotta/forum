@@ -1,19 +1,15 @@
 <?php
 class Categoria {
-	
     protected $idCategoria;
     protected $nome;
 	
-    
-
 	public function getIdCategoria() {
-		return $this->idUser;
+		return $this->idCategoria;
 	}
 
 	public function setIdCategoria($idCategoria) {
-		$this->idUser = $idUser;
+		$this->idCategoria = $idCategoria;
 	}
-        
     
     public function getNome() {
 		return $this->nome;
@@ -22,6 +18,4 @@ class Categoria {
 	public function setNome($nome) {
 		$this->nome = $nome;
 	}
-
-	
 }
