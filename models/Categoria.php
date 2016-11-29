@@ -10,7 +10,7 @@ class Categoria {
 		return $this->idUser;
 	}
 
-	public function setIdCategoria($idCategoria {
+	public function setIdCategoria($idCategoria) {
 		$this->idUser = $idUser;
 	}
         
