@@ -13,12 +13,12 @@
 
 		        		if($tipo < 3) {
 					?>
-							<a href="/index/?r=forum/edita&id=<?=$forum->getIdForum()?>">Editar</a>
+							<a href="/index/?r=index/edita&id=<?=$forum->getIdForum()?>">Editar</a>
 						
 						<?php
 							if($tipo < 2) {
 						?>
-								<a href="/index/?r=forum/exclui&id=<?=$forum->getIdForum()?>">Excluir</a>		
+								<a href="/index/?r=index/exclui&id=<?=$forum->getIdForum()?>">Excluir</a>		
 						<?php
 							}
 		        		}

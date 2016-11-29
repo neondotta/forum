@@ -14,7 +14,7 @@ class ForumDAO extends DAO{
 
 		$query->execute(array(
 			':nome' => $forum->getNome(),
-			':idCategoria' => $forum->getIdCategoria()>getIdTopico()
+			':idCategoria' => $forum->getIdCategoria()->getIdTopico()
 		));
 
 		return $this->db()->lastInsertId();

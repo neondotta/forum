@@ -1,6 +1,5 @@
 <?php
 class IndexController {
-	
 	public function index() {
 		$dao = new ForumDAO();
         $lista = $dao->getLista();
