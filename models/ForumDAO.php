@@ -14,7 +14,7 @@ class ForumDAO extends DAO{
 
 		$query->execute(array(
 			':nome' => $forum->getNome(),
-			':idCategoria' => $forum->getIdCategoria()
+			':idCategoria' => $forum->getIdCategoria()>getIdTopico()
 		));
 
 		return $this->db()->lastInsertId();
@@ -22,26 +22,31 @@ class ForumDAO extends DAO{
 	}
 
 	public function getLista($idCategoria){
-		$sql = 'SELECT f.nome, c.nome
+		$sql = 'SELECT f.nome AS forumNome, c.nome
 				FROM forum f
 					INNER JOIN categoria c
 						USING (idCategoria)
-				WHERE c.idCategoria = :idCategoria
+				ORDER BY c.nome ASC;
 				';
 
-		$query = $this->db()->prepare($sql);
-
-		$query->execute(array(':idForum' => $idForum));
+		$query = $this->db()->query($sql);
 
 		$listaForum = array();
 
 		foreach($query as $dadosForum){
 			
+			$forum = new Forum($dadosForum['forumNome'], new Categoria($dadosForum['nome']));
+			$forum->setIdForum($dadosForum['IdForum']);
+			$forum->getCategoria()->setIdCategoria($dadosForum['idCategoria']);
+
+			array_push($listaForum, $forum);
 		}
+
+		return $listaForum;
 
 	}
 
-
+	
 
 
 }
