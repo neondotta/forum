@@ -1,5 +1,5 @@
 <?php
-class User {
+class Forum {
 	
     protected $idForum;
     protected $nome;
