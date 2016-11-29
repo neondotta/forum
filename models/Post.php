@@ -8,9 +8,8 @@ class Post {
 	private $user;
 	private $topico;
 
-	function __construct($titulo, $texto, $user) {
+	function __construct($titulo, $user) {
 		$this->setTitulo($titulo);
-		$this->setTexto($texto);
 		$this->setUser($user);
 	}
 
