@@ -62,10 +62,33 @@ class ForumDAO extends DAO{
     	$forum = new Forum($dadosForum['nomeForum'], new Categoria($dadosForum['nome']]));
     	$forum->setIdForum($dadosForum['idForum']);
 
-    	$return $forum;
+    	return $forum;
 
     }
 
+    public function atualiza(Forum $forum){
+    	$sql = "UPDATE forum
+    			SET nome=:nome, categoria=:categoria
+    			WHERE idForum = :id";
+
+    	$query = $this->db()->prepare($sql);
+
+    	return $query->execute(array(
+    		':nome' => $forum->getNome(),
+    		':categoria' => $forum->getCategoria()->getIdCategoria(),
+    		':id' => $forum->getIdForum()
+    	));
+
+    }
+
+    public function exclui($id){
+    	$sql = "DELETE FROM forum
+    			WHERE idForum = :id";
+
+    	$query = $this->db()->prepare($sql);
+
+    	$query->execute(array(':id' => $id));
+    }
 
 
 }
