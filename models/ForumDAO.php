@@ -46,7 +46,26 @@ class ForumDAO extends DAO{
 
 	}
 
-	
+    public function getPost($id){
+    	$sql = "SELECT f.IdForum, f.nome AS nomeForum, c.idCategoria, c.nome;
+    			FROM forum f
+    			INNER JOIN categoria c 
+    				USING(idCategoria)
+    			WHERE p.IdForum = :id";
+
+    	$query = $this->db()->prepare($sql);
+
+    	$query->execute(array(':id' => $id));
+
+    	$dadosForum = $query->fetch(PDO::FETCH_ASSOC);
+
+    	$forum = new Forum($dadosForum['nomeForum'], new Categoria($dadosForum['nome']]));
+    	$forum->setIdForum($dadosForum['IdForum']);
+
+    	$return $forum;
+
+    }
+
 
 
 }
