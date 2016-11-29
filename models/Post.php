@@ -8,10 +8,9 @@ class Post {
 	private $user;
 	private $topico;
 
-	function __construct($titulo, $texto, $user) {
+	function __construct($titulo, $user) {
 		$this->setTitulo($titulo);
-		$this->setTexto($texto);
-		$this->setIdUser($user);
+		$this->setUser($user);
 	}
 
     /**
@@ -103,7 +102,7 @@ class Post {
      *
      * @return self
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 

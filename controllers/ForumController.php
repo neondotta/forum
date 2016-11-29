@@ -1,5 +1,12 @@
 <?php
 class ForumController {
+
+    public function index() {
+        $dao = new ForumDAO();
+        $lista = $dao->getLista();
+
+        require_once __DIR__.'/../views/forum/index.php';
+    }
 	
 	public function cadastra() {
 		

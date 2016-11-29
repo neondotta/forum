@@ -33,8 +33,11 @@ class PostDAO extends DAO
         $listaPosts = array();
 
         foreach ($query as $dadosPost) {
-            $post = new Post($dadosPost['titulo'], $dadosPost['texto'], new User($dadosPost['nome']));
+            $usuario = new User($dadosPost['nome']);
+
+            $post = new Post($dadosPost['titulo'], $usuario);
             $post->setIdPost($dadosPost['idPost']);
+            $post->setText($dadosPost['texto']);
             $post->setDataCriacao($dadosPost['dataCriacao']);
             $post->setDataAtualizacao($dadosPost['dataAtualizacao']);
             $post->getUser()->setIdUser($dadosPost['idUser']);
@@ -56,8 +59,9 @@ class PostDAO extends DAO
 
         $dadosPost = $query->fetch(PDO::FETCH_ASSOC);
 
-        $post = new Post($dadosPost['titulo'], $dadosPost['texto'], new User($dadosPost['nome']));
+        $post = new Post($dadosPost['titulo'], new User($dadosPost['nome']));
         $post->setIdPost($dadosPost['idPost']);
+        $post->setText($dadosPost['texto']);
         $post->setDataCriacao($dadosPost['dataCriacao']);
         $post->setDataAtualizacao($dadosPost['dataAtualizacao']);
         $post->getUser()->setIdUser($dadosPost['idUser']);

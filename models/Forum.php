@@ -1,12 +1,13 @@
 <?php
-class User {
+class Forum {
 	
     protected $idForum;
     protected $nome;
 	protected $categoria;
     
-    function __construct($nome){
-
+    function __construct($nome, $categoria){
+        $this->setNome($nome);
+        $this->setCategoria($categoria);
     }
 
 	public function getIdForum() {
@@ -43,7 +44,7 @@ class User {
      *
      * @return self
      */
-    protected function setCategoria($categoria)
+    protected function setCategoria(Categoria $categoria)
     {
         $this->categoria = $categoria;
 
