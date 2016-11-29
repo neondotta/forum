@@ -36,7 +36,7 @@ class ForumDAO extends DAO{
 		foreach($query as $dadosForum){
 			
 			$forum = new Forum($dadosForum['forumNome'], new Categoria($dadosForum['nome']));
-			$forum->setIdForum($dadosForum['IdForum']);
+			$forum->setIdForum($dadosForum['idForum']);
 			$forum->getCategoria()->setIdCategoria($dadosForum['idCategoria']);
 
 			array_push($listaForum, $forum);
