@@ -21,8 +21,8 @@ class ForumDAO extends DAO{
 
 	}
 
-	public function getLista(){
-		$sql = 'SELECT f.nome AS forumNome, c.nome
+	public function getLista() {
+		$sql = 'SELECT f.idForum, f.nome AS forumNome, f.idCategoria, c.nome
 				FROM forum f
 					INNER JOIN categoria c
 						USING (idCategoria)
