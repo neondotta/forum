@@ -33,7 +33,9 @@ class PostDAO extends DAO
         $listaPosts = array();
 
         foreach ($query as $dadosPost) {
-            $post = new Post($dadosPost['titulo'], $dadosPost['texto'], new User($dadosPost['nome']));
+            $usuario = new User($dadosPost['nome']);
+
+            $post = new Post($dadosPost['titulo'], $dadosPost['texto'], $usuario);
             $post->setIdPost($dadosPost['idPost']);
             $post->setDataCriacao($dadosPost['dataCriacao']);
             $post->setDataAtualizacao($dadosPost['dataAtualizacao']);

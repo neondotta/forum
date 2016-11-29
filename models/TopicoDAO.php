@@ -33,10 +33,12 @@ class TopicoDAO extends DAO{
     public function getLista($idForum){
         
         $sql = "SELECT 
-                    t.nome,
+                    t.idTopico,
+                    t.nome as topico_nome,
                     t.dataCriacao,
                     t.dataAtualizacao,
-                    u.Nome
+                    u.idUser,
+                    u.nome
                 FROM topico t 
                     INNER JOIN usuario u
                         ON(t.idUser = u.idUser);
@@ -51,12 +53,11 @@ class TopicoDAO extends DAO{
         
         foreach ($query as $dadosTopico){
             
-            $topico = new Topico();
-                $topico->setIdTopico($dadosTopico['idTopico']);
-                $topico->setNome($dadosTopico['nome']);
-                $topico->setDataCriacao($dadosTopico['dataCriacao']);
-                $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
-                $topico->setUser($dadosTopico['user']);
+            $topico = new Topico($dadosTopico['topico_nome'], new User($dadosTopico['nome']));
+            $topico->setIdTopico($dadosTopico['idTopico']);
+            $topico->setDataCriacao($dadosTopico['dataCriacao']);
+            $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
+            $topico->getUser()->setUser($dadosTopico['idUser']);
 
             array_push($listaTopico, $topico);
         }
@@ -68,20 +69,31 @@ class TopicoDAO extends DAO{
     
     public function getTopico($id){
         
-        $sql = "SELECT * from topico where idTopico = :id";        
+        $sql = "SELECT 
+                    t.idTopico,
+                    t.nome as topico_nome,
+                    t.dataCriacao,
+                    t.dataAtualizacao,
+                    u.idUser,
+                    u.nome
+                FROM topico t 
+                    INNER JOIN usuario u
+                        ON(t.idUser = u.idUser)
+                WHERE t.idTopico = :id";
+
         $query = $this->db()->prepare($sql);
         
         $query->execute(array(':id' => $id));
         
         $dadosTopico = $query->fetch(PDO::FETCH_ASSOC);
 
-        $topico = new Topico();
-            $topico->setIdTopico($dadosTopico['idTopico']);
-            $topico->setNome($dadosTopico['nome']);
-            $topico->setDataCriacao($dadosTopico['dataCriacao']);
-            $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
-            $topico->setUser($dadosTopico['user']);
-                
+        $topico = new Topico($dadosTopico['topico_nome'], new User($dadosTopico['nome']));
+        $topico->setIdTopico($dadosTopico['idTopico']);
+        $topico->setNome($dadosTopico['nome']);
+        $topico->setDataCriacao($dadosTopico['dataCriacao']);
+        $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
+        $topico->getUser()->setUser($dadosTopico['idUser']);
+            
         return $topico;
         
     }
@@ -91,7 +103,7 @@ class TopicoDAO extends DAO{
         
         $sql = "UPDATE topico 
                 SET 
-                    nome = :nome
+                    nome=:nome
                 WHERE 
                     idTopico = :id";
             

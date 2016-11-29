@@ -8,8 +8,9 @@ class User {
 	protected $user;
 	protected $forum;
 
-	function __construct($nome){
+	function __construct($nome, $user){
 		$this->setNome($nome);
+        $this->setUser($user);
 	}
 
     /**
@@ -125,7 +126,7 @@ class User {
      *
      * @return self
      */
-    protected function setUser($user)
+    protected function setUser(User $user)
     {
         $this->user = $user;
 
