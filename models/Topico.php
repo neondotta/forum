@@ -1,5 +1,5 @@
 <?php
-class User {
+class Topico {
 	
 	protected $idTopico;
 	protected $nome;
@@ -8,8 +8,9 @@ class User {
 	protected $user;
 	protected $forum;
 
-	function __construct($nome){
+	function __construct($nome, $user){
 		$this->setNome($nome);
+        $this->idUser($user);
 	}
 
     /**

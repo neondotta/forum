@@ -39,8 +39,8 @@ class TopicoDAO extends DAO{
                     u.Nome
                 FROM topico t 
                     INNER JOIN usuario u
-                        ON(t.idUser = u.idUser);
-                WHERE t.idForum = :idForum;
+                        ON(t.idUser = u.idUser)
+                WHERE t.idForum = :idForum
                 ORDER BY t.nome ASC";        
         
         $query = $this->db()->prepare($sql);
@@ -52,11 +52,11 @@ class TopicoDAO extends DAO{
         foreach ($query as $dadosTopico){
             
             $topico = new Topico();
+                $topico = new Post($dadosTopico['nome'], new User($dadosTopico['nome']));
                 $topico->setIdTopico($dadosTopico['idTopico']);
-                $topico->setNome($dadosTopico['nome']);
                 $topico->setDataCriacao($dadosTopico['dataCriacao']);
                 $topico->setDataAtualizacao($dadosTopico['dataAtualizacao']);
-                $topico->setUser($dadosTopico['user']);
+                $topico->getUser->setIdUser($dadosTopico['idUser']);
 
             array_push($listaTopico, $topico);
         }
@@ -68,7 +68,18 @@ class TopicoDAO extends DAO{
     
     public function getTopico($id){
         
-        $sql = "SELECT * from topico where idTopico = :id";        
+        $sql = "SELECT
+            t.idTopico,
+            t.nome,
+            t.dataCriacao,
+            t.dataAtualizacao,
+            u.idUser,
+            u.Nome
+        FROM topico t 
+            INNER JOIN usuario u
+                ON(t.idUser = u.idUser)
+        WHERE t.Topico = :id";       
+        
         $query = $this->db()->prepare($sql);
         
         $query->execute(array(':id' => $id));
