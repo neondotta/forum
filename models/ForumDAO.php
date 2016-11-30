@@ -59,7 +59,7 @@ class ForumDAO extends DAO{
 
     	$dadosForum = $query->fetch(PDO::FETCH_ASSOC);
 
-    	$forum = new Forum($dadosForum['nomeForum'], new Categoria($dadosForum['nome']]));
+    	$forum = new Forum($dadosForum['nomeForum'], new Categoria($dadosForum['nome']));
     	$forum->setIdForum($dadosForum['idForum']);
 
     	return $forum;
