@@ -3,7 +3,7 @@ class UserController {
 	
 	public function cadastra() {
 		
-        if (isset($_POST['nome'], $_POST['salario'], $_POST['comissao'])){
+        if (isset($_POST['nome'], $_POST['senha'], $_POST['dataNascimento'])){
             
             $user = new User();
             $user->setNome($_POST['nome']);

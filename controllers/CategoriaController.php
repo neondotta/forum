@@ -1,21 +1,21 @@
 <?php
-class UserController {
+class CategoriaController {
 	
 	public function cadastra() {
 		
         if (isset($_POST['nome'], $_POST['salario'], $_POST['comissao'])){
             
-            $user = new User();
+            $user = new Categoria();
             $user->setNome($_POST['nome']);
                                                 
-            $dao = new UserDAO();
+            $dao = new CategoriaDAO();
             $dao->insere($user);
             $mensagem = 'Usuário salvo com sucesso';
             require_once __DIR__.'/../views/mensagem.php';                                
         }
         else{
             $user = new User();
-            require_once __DIR__.'/../views/user/formCadastro.php';        
+            require_once __DIR__.'/../views/categoria/formCadastro.php';        
         }            
           
     
