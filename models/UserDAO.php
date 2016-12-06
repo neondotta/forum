@@ -14,15 +14,14 @@ class UserDAO extends DAO{
                         :email,
                         :senha,
                         :dataNascimento,
-                        :tipo)
-                ";
+                        :tipo)";
 
         $query = $this->db()->prepare($sql);
 
         $query->execute(array(
             ':nome' => $user->getNome(),
             ':email' => $user->getEmail(),
-            ':senha' => $user->getSenha(),
+            ':senha' => md5($user->getSenha()),
             ':dataNascimento' => $user->getDataNascimento(),
             ':tipo' => $user->getTipo()
         ));
@@ -78,6 +77,31 @@ class UserDAO extends DAO{
 
     }
 
+    public function getLogin($email, $senha){
+
+        $sql = "SELECT * FROM user 
+                    WHERE email = :email 
+                    AND senha = :senha";
+
+        $query->execute(array(':email' => $email, ':senha' =>md5($senha)));
+
+        $dadosUser = $query->fetch();
+
+        if(empty($dadosUser)){
+            return false;
+        }else{
+            $user = new User();
+            $user->setIdUser($dadosUser['idUser']);
+            $user->setNome($dadosUser['nome']);
+            $user->setEmail($dadosUser['email']);
+            $user->setDataNascimento($dadosUser['dataNascimento']);
+            $user->setTipo($dadosUser['tipo']);
+        
+            $_SESSION['login'] = $user;
+            return true;
+        }
+
+    }
 
     public function atualiza(User $user){
 

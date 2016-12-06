@@ -1,4 +1,5 @@
 <?php
+require_once 'views/session.php';
 spl_autoload_register(function ($class_name) {
 	
     
