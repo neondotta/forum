@@ -68,6 +68,16 @@ class CategoriaDAO extends DAO{
 	}
 
 	public function exclui($id) {
+		$forumDAO = new ForumDAO();
+
+		$foruns = $forumDAO->getLista($id);
+
+		if(!empty($foruns)) {
+			foreach ($foruns as $key => $v) {
+				$forumDAO->exclui($v->getIdForum());
+			}
+		}
+
 		$sql = "DELETE FROM categoria
 				WHERE idCategoria = :id";
 

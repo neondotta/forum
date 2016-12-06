@@ -1,9 +1,7 @@
 <?php
 
-class ForumDAO extends DAO{
-
-	public function insere(Forum $forum){
-
+class ForumDAO extends DAO {
+	public function insere(Forum $forum) {
 		$sql = "INSERT INTO forum
 					(nome, idCategoria)
 				VALUES
@@ -18,7 +16,6 @@ class ForumDAO extends DAO{
 		));
 
 		return $this->db()->lastInsertId();
-
 	}
 
 	public function getLista($categoria = '') {
@@ -42,8 +39,7 @@ class ForumDAO extends DAO{
 
 		$listaForum = array();
 
-		foreach($query as $dadosForum){
-
+		foreach($query as $dadosForum) {
 			$forum = new Forum($dadosForum['forumNome'], new Categoria($dadosForum['nome']));
 			$forum->setIdForum($dadosForum['idForum']);
 			$forum->getCategoria()->setIdCategoria($dadosForum['idCategoria']);
@@ -52,7 +48,6 @@ class ForumDAO extends DAO{
 		}
 
 		return $listaForum;
-
 	}
 
     public function getPost($id){
@@ -72,7 +67,6 @@ class ForumDAO extends DAO{
     	$forum->setIdForum($dadosForum['idForum']);
 
     	return $forum;
-
     }
 
     public function atualiza(Forum $forum){
@@ -87,7 +81,6 @@ class ForumDAO extends DAO{
     		':categoria' => $forum->getCategoria()->getIdCategoria(),
     		':id' => $forum->getIdForum()
     	));
-
     }
 
     public function exclui($id){
@@ -98,10 +91,4 @@ class ForumDAO extends DAO{
 
     	$query->execute(array(':id' => $id));
     }
-
-
 }
-
-
-
-?>
