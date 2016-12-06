@@ -1,7 +1,7 @@
 <?php
 
 class CategoriaDAO extends DAO{
-	
+
 	public function insere(Categoria $categoria){
 
 		$sql = "INSERT INTO categoria
@@ -19,20 +19,17 @@ class CategoriaDAO extends DAO{
 
 	}
 
-	public function getLista(){
-
-		$sql = "SELECT nome
-					FROM categoria";
-
-		$query = $this->bd()->prepare($sql);
+	public function getLista() {
+		$sql = "SELECT idCategoria, nome FROM categoria";
+		$query = $this->db()->query($sql);
 
 		$listaCategoria = array();
 
-		foreach ($query => $dadosCategoria) {	
+		foreach ($query->fetchAll() as $key => $dadosCategoria) {
 			$categoria = new Categoria();
 			$categoria->setIdCategoria($dadosCategoria['idCategoria']);
 			$categoria->setNome($dadosCategoria['nome']);
-		
+
 			array_push($listaCategoria, $categoria);
 		}
 
@@ -41,23 +38,19 @@ class CategoriaDAO extends DAO{
 	}
 
 	public function getCategoria($id){
-
-		$sql = "SELECT *
-					FROM categoria
-					WHERE idCategoria = :id";
+		$sql = "SELECT * FROM categoria WHERE idCategoria = :id";
 
 		$query = $this->db()->prepare($sql);
 
 		$query->execute(array(':id' => $id));
 
-		$dadosCategoria = query->fetch(PDO::FETCH_ASSOC);
+		$dadosCategoria = $query->fetch(PDO::FETCH_ASSOC);
 
 		$categoria = new Categoria();
 		$categoria->setIdCategoria($dadosCategoria['idCategoria']);
 		$categoria->setNome($dadosCategoria['nome']);
 
 		return $categoria;
-
 	}
 
 	public function atualiza(Categoria $categoria){

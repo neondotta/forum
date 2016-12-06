@@ -14,7 +14,7 @@ class ForumDAO extends DAO{
 
 		$query->execute(array(
 			':nome' => $forum->getNome(),
-			':idCategoria' => $forum->getIdCategoria()->getIdTopico()
+			':idCategoria' => $forum->getCategoria()->getIdCategoria()
 		));
 
 		return $this->db()->lastInsertId();
@@ -34,7 +34,7 @@ class ForumDAO extends DAO{
 		$listaForum = array();
 
 		foreach($query as $dadosForum){
-			
+
 			$forum = new Forum($dadosForum['forumNome'], new Categoria($dadosForum['nome']));
 			$forum->setIdForum($dadosForum['idForum']);
 			$forum->getCategoria()->setIdCategoria($dadosForum['idCategoria']);
@@ -49,7 +49,7 @@ class ForumDAO extends DAO{
     public function getPost($id){
     	$sql = "SELECT f.idForum, f.nome AS nomeForum, c.idCategoria, c.nome;
     			FROM forum f
-    			INNER JOIN categoria c 
+    			INNER JOIN categoria c
     				USING(idCategoria)
     			WHERE p.IdForum = :id";
 

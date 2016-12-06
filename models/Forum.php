@@ -1,10 +1,10 @@
 <?php
 class Forum {
-	
+
     protected $idForum;
     protected $nome;
 	protected $categoria;
-    
+
     function __construct($nome='', $categoria=''){
         $this->setNome($nome);
         $this->setCategoria($categoria);
@@ -17,8 +17,8 @@ class Forum {
 	public function setIdForum($idForum) {
 		$this->idForum = $idForum;
 	}
-        
-    
+
+
     public function getNome() {
 		return $this->nome;
 	}
@@ -44,7 +44,7 @@ class Forum {
      *
      * @return self
      */
-    protected function setCategoria($categoria)
+    public function setCategoria($categoria)
     {
         $this->categoria = $categoria;
 
