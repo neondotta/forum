@@ -5,7 +5,7 @@ class Forum {
     protected $nome;
 	protected $categoria;
     
-    function __construct($nome, $categoria){
+    function __construct($nome='', $categoria=''){
         $this->setNome($nome);
         $this->setCategoria($categoria);
     }
@@ -44,7 +44,7 @@ class Forum {
      *
      * @return self
      */
-    protected function setCategoria(Categoria $categoria)
+    protected function setCategoria($categoria)
     {
         $this->categoria = $categoria;
 

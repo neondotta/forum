@@ -10,19 +10,20 @@ class ForumController {
 	
 	public function cadastra() {
 		
-        if (isset($_POST['nome'], $_POST['salario'], $_POST['comissao'])){
+        if (isset($_POST['nome'], $_POST['categoria'])){
             
-            $user = new User();
-            $user->setNome($_POST['nome']);
+            $forum = new Forum();
+            $forum->setNome($_POST['nome']);
+            $forum->setCategoria($_POST['categoria']);
                                                 
-            $dao = new UserDAO();
-            $dao->insere($user);
+            $dao = new ForumDAO();
+            $dao->insere($forum);
             $mensagem = 'Usuário salvo com sucesso';
             require_once __DIR__.'/../views/mensagem.php';                                
         }
         else{
-            $user = new User();
-            require_once __DIR__.'/../views/user/formCadastro.php';        
+            $forum = new Forum();
+            require_once __DIR__.'/../views/forum/formCadastro.php';        
         }            
           
     

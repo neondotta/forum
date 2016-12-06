@@ -1,6 +1,6 @@
 <ul>
 
-    <?foreach ($lista as $vendedor): ?>
+    <?foreach ($lista as $user): ?>
     
         <li>
             <a href="/forum/?r=user/edita&id=<?=$user->getIdUser()?>"><?=$user->getNome()?></a>

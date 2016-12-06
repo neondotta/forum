@@ -8,7 +8,7 @@ class User {
 	protected $dataNascimento;
 	protected $tipo;
 
-	function __construct($nome) {
+	function __construct($nome = '') {
 		$this->setNome($nome);
 	}
 
