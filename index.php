@@ -39,10 +39,15 @@ if (is_array($requisicao) && (count($requisicao) == 2)) {
 
     $tipo = 1;
 
-	require_once 'views/cabecalho.php';
-	eval('$controlador = new '.$nomeControlador.'Controller();');
-	eval('$controlador->'.$acao.'();');
-	require_once 'views/rodape.php';
+    if($acao != "login") {
+        require_once 'views/session.php';
+    }
+    
+    	require_once 'views/cabecalho.php';
+    	eval('$controlador = new '.$nomeControlador.'Controller();');
+    	eval('$controlador->'.$acao.'();');
+    	require_once 'views/rodape.php';
+    
 }
 else {
 	print 'Não entendi o que fazer.';

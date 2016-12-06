@@ -23,7 +23,7 @@ class CategoriaController {
         if (!empty($lista)){
             require_once __DIR__."/../views/user/lista.php";
         } else {
-            $mensagem = "Nenhum usuário cadastrado";
+            $mensagem = "Nenhuma categoria cadastrado";
             require_once __DIR__."/../views/mensagem.php";
         }
     }

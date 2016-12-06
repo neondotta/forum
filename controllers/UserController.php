@@ -21,7 +21,20 @@ class UserController {
     
 	}
     
-    
+    public function login(){
+
+            $dao = new UserDAO();
+            $lista = $dao->getLogin($_POST['email'], $_POST['senha']);
+            if($lista){
+                header('Location: /forum/index.php');
+            }else{
+                $mensagem = 'Dados inválidos';
+                require_once __DIR__.'/../views/mensagem.php'; 
+            }
+
+
+    }
+
     public function lista(){
         
         $dao = new UserDAO();
