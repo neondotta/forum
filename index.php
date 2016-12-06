@@ -37,7 +37,7 @@ if (is_array($requisicao) && (count($requisicao) == 2)) {
 	$nomeControlador = ucfirst($requisicao[0]);
 	$acao = $requisicao[1];
 
-    $tipo = 1;
+    $tipo = 0;
 
 	require_once 'views/cabecalho.php';
 	eval('$controlador = new '.$nomeControlador.'Controller();');
