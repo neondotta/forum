@@ -106,7 +106,7 @@
 										</div>
 										
 										<div class="col-md-1">
-											<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>"" class="btn btn-xs btn-default">Editar</a>
+											<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 										</div>
 
 										<div class="col-md-1">
@@ -119,7 +119,10 @@
 									<div class="col-md-7">
 										Forum1
 									</div>
-
+									<?php
+											endforeach;
+										}
+									?>
 				        
 				        <li>
 				        	

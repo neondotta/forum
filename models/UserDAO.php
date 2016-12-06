@@ -83,6 +83,7 @@ class UserDAO extends DAO{
                     WHERE email = :email 
                     AND senha = :senha";
 
+        $query = $this->db()->prepare($sql);
         $query->execute(array(':email' => $email, ':senha' =>md5($senha)));
 
         $dadosUser = $query->fetch();
@@ -97,6 +98,7 @@ class UserDAO extends DAO{
             $user->setDataNascimento($dadosUser['dataNascimento']);
             $user->setTipo($dadosUser['tipo']);
         
+            
             $_SESSION['login'] = $user;
             return true;
         }
