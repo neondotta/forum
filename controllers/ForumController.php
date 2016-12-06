@@ -71,22 +71,17 @@ class ForumController {
         }
     }
 
-    public function exclui(){
-
+    public function exclui() {
         $id = $_GET["id"];
 
-        $dao = new UserrDAO();
+        $forumDAO = new ForumDAO();
 
-        if ($user = $dao->excluiUser($id)){
-
-            $mensagem = "Excluído com sucesso";
+        if($forumDAO->exclui($id)) {
+            $mensagem = "Fórum excluído com sucesso!";
         }else{
             $mensagem = "Problemas";
         }
 
         require_once __DIR__."/../views/mensagem.php";
-
     }
-
-
 }

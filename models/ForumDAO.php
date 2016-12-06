@@ -91,11 +91,21 @@ class ForumDAO extends DAO {
     }
 
     public function exclui($id){
-    	$sql = "DELETE FROM forum
-    			WHERE idForum = :id";
+		$postDAO = new PostDAO();
 
-    	$query = $this->db()->prepare($sql);
+		$posts = $postDAO->getLista($id);
 
-    	$query->execute(array(':id' => $id));
+		if(!empty($posts)) {
+			foreach ($posts as $key => $v) {
+				$postDAO->exclui($v->getIdPost());
+			}
+		}
+
+		$sql = "DELETE FROM forum
+				WHERE idForum = :id";
+
+		$query = $this->db()->prepare($sql);
+
+		return $query->execute(array(':id' => $id));
     }
 }
