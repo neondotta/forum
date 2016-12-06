@@ -4,9 +4,8 @@ class IndexController {
 		$forumDAO = new ForumDAO();
 		$categoriaDAO = new CategoriaDAO();
 
-        $lista = $categoriaDAO->getLista();
-
 		$foruns = array();
+        $lista = $categoriaDAO->getLista();
 
 		foreach ($lista as $key => $val) {
 			$id = $val->getIdCategoria();

@@ -9,9 +9,8 @@
 
 			foreach ($foruns as $key => $val):
 	?>
-
 		        <li>
-		        	<div>
+		        	<div style="background-color: #CCC;">
                         <span><?=$val["nome"]?></span>
 
     		        	<?php
@@ -37,6 +36,20 @@
                         ?>
                                 <div>
                                     <?=$v->getNome()?>
+
+                                    <?php
+                                        if($tipo < 3) {
+                					?>
+                							<a href="/index/?r=forum/edita&id=<?=$v->getIdForum()?>">Editar</a>
+
+                						<?php
+                							if($tipo < 2) {
+                						?>
+                								<a href="/index/?r=forum/exclui&id=<?=$v->getIdForum()?>">Excluir</a>
+                						<?php
+                							}
+                		        		}
+                		        	?>
                                 </div>
                         <?php
                             endforeach;
@@ -45,13 +58,12 @@
                         }
                     ?>
 		        </li>
-
 	    <?php
 	    	endforeach;
 
 		} else {
 	?>
-			<li>Nenhum fórum cadastrado</li>
+			<li>Nenhuma categoria cadastrada</li>
 	<?php
 		}
 	?>
