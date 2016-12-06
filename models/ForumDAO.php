@@ -21,15 +21,24 @@ class ForumDAO extends DAO{
 
 	}
 
-	public function getLista() {
-		$sql = 'SELECT f.idForum, f.nome AS forumNome, f.idCategoria, c.nome
+	public function getLista($categoria = '') {
+		$sql = "SELECT f.idForum, f.nome AS forumNome, f.idCategoria, c.nome
 				FROM forum f
-					INNER JOIN categoria c
-						USING (idCategoria)
-				ORDER BY c.nome ASC;
-				';
+				INNER JOIN categoria c
+					USING (idCategoria)";
 
-		$query = $this->db()->query($sql);
+		if(!empty($categoria))
+			$sql .= " WHERE f.idCategoria = :idCategoria";
+
+		$sql .= " ORDER BY c.nome ASC";
+
+		if(!empty($categoria)) {
+			$query = $this->db()->prepare($sql);
+
+	    	$query->execute(array(':idCategoria' => $categoria));
+		} else {
+			$query = $this->db()->query($sql);
+		}
 
 		$listaForum = array();
 
