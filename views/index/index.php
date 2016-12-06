@@ -18,12 +18,12 @@
 
     		        		if($tipo < 3) {
     					?>
-    							<a href="/index/?r=categoria/edita&id=<?=$key?>">Editar</a>
+    							<a href="/forum/?r=categoria/edita&id=<?=$key?>">Editar</a>
 
     						<?php
     							if($tipo < 2) {
     						?>
-    								<a href="/index/?r=categoria/exclui&id=<?=$key?>">Excluir</a>
+    								<a href="/forum/?r=categoria/exclui&id=<?=$key?>">Excluir</a>
     						<?php
     							}
     		        		}
@@ -40,12 +40,12 @@
                                     <?php
                                         if($tipo < 3) {
                 					?>
-                							<a href="/index/?r=forum/edita&id=<?=$v->getIdForum()?>">Editar</a>
+                							<a href="/forum/?r=forum/edita&id=<?=$v->getIdForum()?>">Editar</a>
 
                 						<?php
                 							if($tipo < 2) {
                 						?>
-                								<a href="/index/?r=forum/exclui&id=<?=$v->getIdForum()?>">Excluir</a>
+                								<a href="/forum/?r=forum/exclui&id=<?=$v->getIdForum()?>">Excluir</a>
                 						<?php
                 							}
                 		        		}

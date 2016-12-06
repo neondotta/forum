@@ -67,18 +67,14 @@ class CategoriaDAO extends DAO{
 
 	}
 
-	public function exclui($id){
-
-		$sql = 'DELETE FROM categoria
-				WHERE idCategoria = :id';
+	public function exclui($id) {
+		$sql = "DELETE FROM categoria
+				WHERE idCategoria = :id";
 
 		$query = $this->db()->prepare($sql);
 
 		return $query->execute(array(':id' => $id));
-
 	}
-
-
 }
 
 ?>
