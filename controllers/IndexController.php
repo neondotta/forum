@@ -14,6 +14,9 @@ class IndexController {
 			$foruns[$id]["foruns"] = $forumDAO->getLista($id);
 		}
 
+		//echo "<pre>";
+		//print_r($foruns);exit;
+
 		require_once __DIR__.'/../views/index/index.php';
 	}
 }
