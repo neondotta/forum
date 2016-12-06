@@ -64,7 +64,7 @@ class ForumDAO extends DAO {
 
     	$query->execute(array(':id' => $id));
 
-    	$dadosForum = $query->fetch(PDO::FETCH_ASSOC);
+    	$dadosForum = $query->fetch();
 
 		$categoria = new Categoria();
 		$categoria->setIdCategoria($dadosForum['idCategoria']);
@@ -91,13 +91,13 @@ class ForumDAO extends DAO {
     }
 
     public function exclui($id){
-		$postDAO = new PostDAO();
+		$topicoDAO = new TopicoDAO();
 
-		$posts = $postDAO->getLista($id);
+		$topicos = $topicoDAO->getLista($id);
 
-		if(!empty($posts)) {
-			foreach ($posts as $key => $v) {
-				$postDAO->exclui($v->getIdPost());
+		if(!empty($topicos)) {
+			foreach ($topicos as $key => $v) {
+				$topicoDAO->exclui($v->getIdTopico());
 			}
 		}
 

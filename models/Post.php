@@ -13,6 +13,7 @@ class Post {
 		$this->setUser($user);
 	}
 
+
     /**
      * Get the value of Id Post
      *
@@ -86,6 +87,54 @@ class Post {
     }
 
     /**
+     * Get the value of Data Criacao
+     *
+     * @return mixed
+     */
+    public function getDataCriacao()
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * Set the value of Data Criacao
+     *
+     * @param mixed dataCriacao
+     *
+     * @return self
+     */
+    public function setDataCriacao($dataCriacao)
+    {
+        $this->dataCriacao = $dataCriacao;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Data Atualizacao
+     *
+     * @return mixed
+     */
+    public function getDataAtualizacao()
+    {
+        return $this->dataAtualizacao;
+    }
+
+    /**
+     * Set the value of Data Atualizacao
+     *
+     * @param mixed dataAtualizacao
+     *
+     * @return self
+     */
+    public function setDataAtualizacao($dataAtualizacao)
+    {
+        $this->dataAtualizacao = $dataAtualizacao;
+
+        return $this;
+    }
+
+    /**
      * Get the value of User
      *
      * @return mixed
@@ -102,7 +151,7 @@ class Post {
      *
      * @return self
      */
-    public function setUser(User $user)
+    public function setUser($user)
     {
         $this->user = $user;
 

@@ -1,24 +1,28 @@
+<h1>Fórum: <?=$forum->getNome()?></h1>
+
+<a href="/forum/?r=topico/cadastra&forum=<?=$forum->getIdForum()?>">Criar tópico</a>
+
 <ul>
 	<?php
-		if (!empty($lista)) {
+		if (!empty($topicos)) {
 
-			foreach ($lista as $forum):
+			foreach ($topicos as $key => $topico):
 	?>
 
 		        <li>
-		        	<div><?=$forum->getNome()?> (<?=$forum->getCategoria()->getNome()?>)</div>
+		        	<?=$topico->getPost()->getTitulo()?> (Autor: <?=$topico->getPost()->getUser()->getNome()?>)
 
 		        	<?php
 		        		global $tipo;
 
 		        		if($tipo < 3) {
 					?>
-							<a href="/index/?r=index/edita&id=<?=$forum->getIdForum()?>">Editar</a>
-						
+							<a href="/forum/?r=topico/edita&id=<?=$topico->getIdTopico()?>">Editar</a>
+
 						<?php
 							if($tipo < 2) {
 						?>
-								<a href="/index/?r=index/exclui&id=<?=$forum->getIdForum()?>">Excluir</a>		
+								<a href="/forum/?r=topico/exclui&id=<?=$topico->getIdTopico()?>">Excluir</a>
 						<?php
 							}
 		        		}
@@ -30,7 +34,7 @@
 
 		} else {
 	?>
-			<li>Nenhum fórum cadastrado</li>
+			<li>Nenhum tópico cadastrado</li>
 	<?php
 		}
 	?>

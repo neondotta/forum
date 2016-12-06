@@ -1,18 +1,12 @@
 <?php
 class Topico {
-	
-	protected $idTopico;
-    protected $post;
-	protected $forum;
 
-<<<<<<< HEAD
-	function __construct($nome, $user){
-		$this->setNome($nome);
-        $this->idUser($user);
-=======
+	private $idTopico;
+    private $post;
+	private $forum;
+
 	function __construct($post){
         $this->setPost($post);
->>>>>>> 49cb3fdaf5cd4fa46618799091c254cceed10698
 	}
 
     /**
@@ -32,7 +26,7 @@ class Topico {
      *
      * @return self
      */
-    protected function setIdTopico($idTopico)
+    public function setIdTopico($idTopico)
     {
         $this->idTopico = $idTopico;
 
@@ -56,7 +50,7 @@ class Topico {
      *
      * @return self
      */
-    protected function setPost(Post $post)
+    public function setPost(Post $post)
     {
         $this->post = $post;
 
@@ -80,7 +74,7 @@ class Topico {
      *
      * @return self
      */
-    protected function setForum(Forum $forum)
+    public function setForum(Forum $forum)
     {
         $this->forum = $forum;
 

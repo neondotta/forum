@@ -40,7 +40,7 @@ class CategoriaDAO extends DAO {
 
 		$query->execute(array(':id' => $id));
 
-		$dadosCategoria = $query->fetch(PDO::FETCH_ASSOC);
+		$dadosCategoria = $query->fetch();
 
 		$categoria = new Categoria();
 		$categoria->setIdCategoria($dadosCategoria['idCategoria']);

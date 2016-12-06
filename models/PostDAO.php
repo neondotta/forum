@@ -10,11 +10,12 @@ class PostDAO extends DAO
 
         $query = $this->db()->prepare($sql);
 
+        // @todo
         $query->execute(array(
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
-            ':idUser' => $post->getUser()->getIdUser(),
-            ':idTopico' => $post->getTopico()->getIdTopico()
+            ':idUser' => $post->getUser() ? $post->getUser()->getIdUser() : null,
+            ':idTopico' => $post->getTopico() ? $post->getTopico()->getIdTopico() : null
         ));
 
         return $this->db()->lastInsertId();
@@ -22,7 +23,7 @@ class PostDAO extends DAO
 
     public function getLista($idTopico) {
         $sql = "SELECT p.idPost, p.titulo, p.texto, p.dataCriacao, p.dataAtualizacao, u.idUser, u.nome FROM post p
-                JOIN user u ON (p.idUser = u.idUser)
+                LEFT JOIN user u ON (p.idUser = u.idUser)
                 WHERE p.idTopico = :idTopico
                 ORDER BY idPost DESC";
 
@@ -37,7 +38,7 @@ class PostDAO extends DAO
 
             $post = new Post($dadosPost['titulo'], $usuario);
             $post->setIdPost($dadosPost['idPost']);
-            $post->setText($dadosPost['texto']);
+            $post->setTexto($dadosPost['texto']);
             $post->setDataCriacao($dadosPost['dataCriacao']);
             $post->setDataAtualizacao($dadosPost['dataAtualizacao']);
             $post->getUser()->setIdUser($dadosPost['idUser']);
@@ -57,7 +58,7 @@ class PostDAO extends DAO
 
         $query->execute(array(':id' => $id));
 
-        $dadosPost = $query->fetch(PDO::FETCH_ASSOC);
+        $dadosPost = $query->fetch();
 
         $post = new Post($dadosPost['titulo'], new User($dadosPost['nome']));
         $post->setIdPost($dadosPost['idPost']);
@@ -79,6 +80,19 @@ class PostDAO extends DAO
         return $query->execute(array(
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
+            ':id' => $post->getIdPost()
+        ));
+    }
+
+    public function atualizaTopico(Post $post) {
+        $sql = "UPDATE post p
+                SET p.idTopico = :topico
+                WHERE p.idPost = :id";
+
+        $query = $this->db()->prepare($sql);
+
+        return $query->execute(array(
+            ':topico' => $post->getTopico()->getIdTopico(),
             ':id' => $post->getIdPost()
         ));
     }

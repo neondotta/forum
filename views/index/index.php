@@ -35,7 +35,7 @@
                             foreach ($val["foruns"] as $k => $v):
                         ?>
                                 <div>
-                                    <?=$v->getNome()?>
+                                    <a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>"><?=$v->getNome()?></a>
 
                                     <?php
                                         if($tipo < 3) {

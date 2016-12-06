@@ -1,10 +1,21 @@
 <?php
 class ForumController {
     public function index() {
-        $dao = new ForumDAO();
-        $lista = $dao->getLista();
+        if (isset($_GET["id"])) {
+            $id = $_GET["id"];
 
-        require_once __DIR__."/../views/forum/index.php";
+            $forumDAO = new ForumDAO();
+            $topicoDAO = new TopicoDAO();
+
+            $forum = $forumDAO->getForum($id);
+            $topicos = $topicoDAO->getLista($id);
+
+            require_once __DIR__."/../views/forum/index.php";
+        } else {
+            $mensagem = "Fórum inválido.";
+
+            require_once __DIR__."/../views/mensagem.php";
+        }
     }
 
 	public function cadastra() {
@@ -29,19 +40,7 @@ class ForumController {
         }
 	}
 
-    public function lista(){
-        $dao = new UserDAO();
-        $lista = $dao->getLista();
-
-        if (!empty($lista)){
-            require_once __DIR__."/../views/user/lista.php";
-        } else {
-            $mensagem = "Nenhum usuário cadastrado";
-            require_once __DIR__."/../views/mensagem.php";
-        }
-    }
-
-    public function edita(){
+    public function edita() {
         if (isset($_POST["nome"])) {
             $forumDAO = new ForumDAO();
 
@@ -78,7 +77,7 @@ class ForumController {
 
         if($forumDAO->exclui($id)) {
             $mensagem = "Fórum excluído com sucesso!";
-        }else{
+        } else {
             $mensagem = "Problemas";
         }
 
