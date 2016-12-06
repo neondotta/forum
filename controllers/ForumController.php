@@ -1,86 +1,79 @@
 <?php
 class ForumController {
-
     public function index() {
         $dao = new ForumDAO();
         $lista = $dao->getLista();
 
-        require_once __DIR__.'/../views/forum/index.php';
+        require_once __DIR__."/../views/forum/index.php";
     }
 
 	public function cadastra() {
-        if (isset($_POST['nome'], $_POST['categoria'])){
+        if (isset($_POST["nome"], $_POST["categoria"])){
             $categoria = new Categoria();
-            $categoria->setIdCategoria($_POST['categoria']);
+            $categoria->setIdCategoria($_POST["categoria"]);
 
-            $forum = new Forum($_POST['nome'], $categoria);
+            $forum = new Forum($_POST["nome"], $categoria);
 
             $dao = new ForumDAO();
             $dao->insere($forum);
-            $mensagem = 'Usuário salvo com sucesso';
-            require_once __DIR__.'/../views/mensagem.php';
+
+            $mensagem = "Usuário salvo com sucesso";
+            require_once __DIR__."/../views/mensagem.php";
         }
         else{
-            $forum = new Forum();
             $categoriaDAO = new CategoriaDAO();
+
             $categorias = $categoriaDAO->getLista();
 
-            require_once __DIR__.'/../views/forum/formCadastro.php';
+            require_once __DIR__."/../views/forum/formCadastro.php";
         }
 	}
 
     public function lista(){
-
         $dao = new UserDAO();
         $lista = $dao->getLista();
 
         if (!empty($lista)){
-            require_once __DIR__.'/../views/user/lista.php';
+            require_once __DIR__."/../views/user/lista.php";
+        } else {
+            $mensagem = "Nenhum usuário cadastrado";
+            require_once __DIR__."/../views/mensagem.php";
         }
-        else{
-            $mensagem = 'Nenhum usuário cadastrado';
-            require_once __DIR__.'/../views/mensagem.php';
-        }
-
-
     }
 
     public function edita(){
+        if (isset($_POST["nome"])) {
+            $forumDAO = new ForumDAO();
 
-        if (isset($_POST['idUser'], $_POST['nome'])){
+            $categoria = new Categoria();
+            $categoria->setIdCategoria($_POST["categoria"]);
 
-            $user = new User();
-            $user->setIdUser($_POST['idUser']);
-            $user->setNome($_POST['nome']);
+            $forum = new Forum($_POST["nome"], $categoria);
+            $forum->setIdForum($_POST["idForum"]);
 
-
-            $dao = new UserDAO();
-            if ($dao->atualiza($user)){
-
-                $mensagem = "Usuário atualziado";
-
-            }else{
+            if ($forumDAO->atualiza($forum)){
+                $mensagem = "Fórum atualizado com sucesso!";
+            } else {
                 $mensagem = "Ocorreu um erro";
             }
 
-            require_once __DIR__.'/../views/mensagem.php';
+            require_once __DIR__."/../views/mensagem.php";
+        } else {
+            $id = $_GET["id"];
 
+            $forumDAO = new ForumDAO();
+            $categoriaDAO = new CategoriaDAO();
+
+            $forum = $forumDAO->getForum($id);
+            $categorias = $categoriaDAO->getLista();
+
+            require_once __DIR__."/../views/forum/formCadastro.php";
         }
-        else{
-
-            $id = $_GET['id'];
-
-            $dao = new UserDAO();
-            $user = $dao->getUser($id);
-
-            require_once __DIR__.'/../views/user/formCadastro.php';
-        }
-
     }
 
     public function exclui(){
 
-        $id = $_GET['id'];
+        $id = $_GET["id"];
 
         $dao = new UserrDAO();
 
@@ -91,7 +84,7 @@ class ForumController {
             $mensagem = "Problemas";
         }
 
-        require_once __DIR__.'/../views/mensagem.php';
+        require_once __DIR__."/../views/mensagem.php";
 
     }
 

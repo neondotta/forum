@@ -1,9 +1,7 @@
 <?php
 
-class CategoriaDAO extends DAO{
-
-	public function insere(Categoria $categoria){
-
+class CategoriaDAO extends DAO {
+	public function insere(Categoria $categoria) {
 		$sql = "INSERT INTO categoria
 					(nome)
 				VALUES
@@ -16,7 +14,6 @@ class CategoriaDAO extends DAO{
 		));
 
 		return $this->db()->lastInsertId();
-
 	}
 
 	public function getLista() {
@@ -34,10 +31,9 @@ class CategoriaDAO extends DAO{
 		}
 
 		return $listaCategoria;
-
 	}
 
-	public function getCategoria($id){
+	public function getCategoria($id) {
 		$sql = "SELECT * FROM categoria WHERE idCategoria = :id";
 
 		$query = $this->db()->prepare($sql);
@@ -53,7 +49,7 @@ class CategoriaDAO extends DAO{
 		return $categoria;
 	}
 
-	public function atualiza(Categoria $categoria){
+	public function atualiza(Categoria $categoria) {
 		$sql = "UPDATE categoria
 				SET nome = :nome
 				WHERE idCategoria = :id";
@@ -87,5 +83,3 @@ class CategoriaDAO extends DAO{
 		return $query->execute(array(':id' => $id));
 	}
 }
-
-?>

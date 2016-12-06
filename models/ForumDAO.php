@@ -40,9 +40,12 @@ class ForumDAO extends DAO {
 		$listaForum = array();
 
 		foreach($query as $dadosForum) {
-			$forum = new Forum($dadosForum['forumNome'], new Categoria($dadosForum['nome']));
+			$categoria = new Categoria();
+			$categoria->setIdCategoria($dadosForum['idCategoria']);
+			$categoria->setNome($dadosForum['nome']);
+
+			$forum = new Forum($dadosForum['forumNome'], $categoria);
 			$forum->setIdForum($dadosForum['idForum']);
-			$forum->getCategoria()->setIdCategoria($dadosForum['idCategoria']);
 
 			array_push($listaForum, $forum);
 		}
@@ -50,12 +53,12 @@ class ForumDAO extends DAO {
 		return $listaForum;
 	}
 
-    public function getPost($id){
-    	$sql = "SELECT f.idForum, f.nome AS nomeForum, c.idCategoria, c.nome;
+    public function getForum($id){
+    	$sql = "SELECT f.idForum, f.nome AS nomeForum, c.idCategoria, c.nome
     			FROM forum f
     			INNER JOIN categoria c
     				USING(idCategoria)
-    			WHERE p.IdForum = :id";
+    			WHERE f.IdForum = :id";
 
     	$query = $this->db()->prepare($sql);
 
@@ -63,7 +66,11 @@ class ForumDAO extends DAO {
 
     	$dadosForum = $query->fetch(PDO::FETCH_ASSOC);
 
-    	$forum = new Forum($dadosForum['nomeForum'], new Categoria($dadosForum['nome']));
+		$categoria = new Categoria();
+		$categoria->setIdCategoria($dadosForum['idCategoria']);
+		$categoria->setNome($dadosForum['nome']);
+
+    	$forum = new Forum($dadosForum['nomeForum'], $categoria);
     	$forum->setIdForum($dadosForum['idForum']);
 
     	return $forum;
@@ -71,7 +78,7 @@ class ForumDAO extends DAO {
 
     public function atualiza(Forum $forum){
     	$sql = "UPDATE forum
-    			SET nome=:nome, categoria=:categoria
+    			SET nome=:nome, idCategoria=:categoria
     			WHERE idForum = :id";
 
     	$query = $this->db()->prepare($sql);

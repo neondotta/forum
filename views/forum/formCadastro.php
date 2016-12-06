@@ -2,9 +2,17 @@
     <h2>Forum</h2>
 
     <form action="#" method="post">
+        <?php
+            if(isset($forum)):
+        ?>
+                <input type="hidden" name="idForum" value="<?=$forum->getIdForum()?>">
+        <?php
+            endif;
+        ?>
+
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome" placeholder="Preencha o nome">
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Preencha o nome" value="<?=isset($forum) ? $forum->getNome() : ""?>">
         </div>
 
         <div class="form-group">
@@ -13,7 +21,7 @@
                 <?php
                     foreach ($categorias as $key => $val):
                 ?>
-                        <option value="<?=$val->getIdCategoria()?>"><?=$val->getNome()?></option>
+                        <option value="<?=$val->getIdCategoria()?>" <?=isset($forum) && ($forum->getCategoria()->getIdCategoria() == $val->getIdCategoria()) ? "selected" : ""?>><?=$val->getNome()?></option>
                 <?php
                     endforeach;
                 ?>
