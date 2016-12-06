@@ -5,5 +5,4 @@
 
 <br/>
 
-<a href="/revenda/">Voltar</a>
-        
+<a href="/forum/">Voltar</a>
