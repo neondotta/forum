@@ -54,17 +54,18 @@ class CategoriaDAO extends DAO{
 	}
 
 	public function atualiza(Categoria $categoria){
-
-		$sql = 'UPDATE categoria
-					SET :nome
-					WHERE idCategoria = :id';
+		$sql = "UPDATE categoria
+				SET nome = :nome
+				WHERE idCategoria = :id";
 
 		$query = $this->db()->prepare($sql);
 
-		return $query->execute(array(
-				':nome' => $categoria->getNome()
-			));
-
+		return $query->execute(
+			array(
+				":nome" => $categoria->getNome(),
+				":id" => $categoria->getIdCategoria()
+			)
+		);
 	}
 
 	public function exclui($id) {

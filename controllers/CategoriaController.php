@@ -30,14 +30,15 @@ class CategoriaController {
     }
 
     public function edita() {
-        if (isset($_POST['idUser'], $_POST['nome'])){
-            $user = new User();
-            $user->setIdUser($_POST['idUser']);
-            $user->setNome($_POST['nome']);
+        if (isset($_POST['nome'])){
+			$categoriaDAO = new CategoriaDAO();
 
-            $dao = new UserDAO();
-            if ($dao->atualiza($user)){
-                $mensagem = "Usuário atualizado";
+			$categoria = new Categoria();
+			$categoria->setIdCategoria($_POST["idCategoria"]);
+            $categoria->setNome($_POST["nome"]);
+
+            if ($categoriaDAO->atualiza($categoria)){
+                $mensagem = "Categoria atualizada com sucesso!";
             } else {
                 $mensagem = "Ocorreu um erro";
             }
@@ -46,10 +47,10 @@ class CategoriaController {
         } else {
             $id = $_GET['id'];
 
-            $dao = new UserDAO();
-            $user = $dao->getUser($id);
+            $categoriaDAO = new CategoriaDAO();
+            $categoria = $categoriaDAO->getCategoria($id);
 
-            require_once __DIR__.'/../views/user/formCadastro.php';
+            require_once __DIR__.'/../views/categoria/formCadastro.php';
         }
     }
 
