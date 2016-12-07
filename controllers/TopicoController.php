@@ -1,5 +1,23 @@
 <?php
 class TopicoController {
+	public function index() {
+        if (isset($_GET["id"])) {
+            $id = $_GET["id"];
+
+            $postDAO = new PostDAO();
+            $topicoDAO = new TopicoDAO();
+
+            $topico = $topicoDAO->getTopico($id);
+            $posts = $postDAO->getLista($id, $topico->getIdTopico());
+
+            require_once __DIR__."/../views/topico/index.php";
+        } else {
+            $mensagem = "Fórum inválido.";
+
+            require_once __DIR__."/../views/mensagem.php";
+        }
+    }
+
 	public function cadastra() {
 		if (isset($_GET["forum"])) {
 			if (isset($_POST["titulo"], $_POST["texto"])) {

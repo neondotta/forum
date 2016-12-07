@@ -10,7 +10,7 @@
 	?>
 
 		        <li>
-		        	<?=$topico->getPost()->getTitulo()?> (Autor: <?=$topico->getPost()->getUser()->getNome()?>)
+		        	<a href="/forum/?r=topico/index&id=<?=$topico->getIdTopico()?>"><?=$topico->getPost()->getTitulo()?></a> (Autor: <?=$topico->getPost()->getUser()->getNome()?>)
 
 		        	<?php
 		        		global $tipo;

@@ -1,12 +1,12 @@
 <?php
 class User {
 
-    protected $idUser;
-    protected $nome;
-	protected $email;
-	protected $senha;
-	protected $dataNascimento;
-	protected $tipo;
+    private $idUser;
+    private $nome;
+	private $email;
+	private $senha;
+	private $dataNascimento;
+	private $tipo;
 
 	function __construct($nome = '') {
 		$this->setNome($nome);
@@ -46,7 +46,7 @@ class User {
      *
      * @return self
      */
-    protected function setEmail($email)
+    public function setEmail($email)
     {
         $this->email = $email;
 
@@ -70,7 +70,7 @@ class User {
      *
      * @return self
      */
-    protected function setSenha($senha)
+    public function setSenha($senha)
     {
         $this->senha = $senha;
 
@@ -94,7 +94,7 @@ class User {
      *
      * @return self
      */
-    protected function setDataNascimento($dataNascimento)
+    public function setDataNascimento($dataNascimento)
     {
         $this->dataNascimento = $dataNascimento;
 
@@ -118,7 +118,7 @@ class User {
      *
      * @return self
      */
-    protected function setTipo($tipo)
+    public function setTipo($tipo)
     {
         $this->tipo = $tipo;
 

@@ -21,15 +21,15 @@ class PostDAO extends DAO
         return $this->db()->lastInsertId();
     }
 
-    public function getLista($idTopico) {
+    public function getLista($idTopico, $idPost) {
         $sql = "SELECT p.idPost, p.titulo, p.texto, p.dataCriacao, p.dataAtualizacao, u.idUser, u.nome FROM post p
                 LEFT JOIN user u ON (p.idUser = u.idUser)
-                WHERE p.idTopico = :idTopico
-                ORDER BY idPost DESC";
+                WHERE p.idTopico = :idTopico AND p.idPost != :idPost
+                ORDER BY idPost ASC";
 
         $query = $this->db()->prepare($sql);
 
-        $query->execute(array(':idTopico' => $idTopico));
+        $query->execute(array(':idTopico' => $idTopico, ':idPost' => $idPost));
 
         $listaPosts = array();
 

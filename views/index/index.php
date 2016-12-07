@@ -24,12 +24,21 @@
 								<div class="col-md-2">
 											
 									<?php
-                                        if($tipo < 3) {
-                					?>
-                							<a href="/forum/?r=forum/cadastra" class="btn btn-xs btn-success">Incluir Fórum</a>
-									<?php
-										}
-									?>
+		                        		if(!empty($val["foruns"])) {
+		                            		foreach ($val["foruns"] as $k => $v):
+		                        	
+		                        	?>
+		                        		<div class="col-md-7">
+											<?=$v->getNome()?>
+										</div>
+										
+										<div class="col-md-3">
+											Usuário
+										</div>
+										
+										<div class="col-md-1">
+											<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
+										</div>
 
                 				</div>
 
