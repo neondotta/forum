@@ -5,6 +5,7 @@
 		<div class="col-md-12">
 			
 			<?php
+				
 				if (!empty($foruns)) {
 
 					global $tipo;
@@ -46,7 +47,7 @@
 								<div class="col-md-1">
 											
 									<?php
-                                        if($tipo < 3) {
+                                        if($_SESSION['login']->getTipo() < 3) {
                 					?>
                 							<a href="/forum/?r=categoria/edita&id=<?=$val["idCategoria"]?>" class="btn btn-xs btn-default">Editar</a>
 									<?php
@@ -58,7 +59,7 @@
 								<div class="col-md-1">
 								
 									<?php
-                                        if($tipo < 2) {
+                                        if($_SESSION['login']->getTipo() < 2) {
                 					?>
                 							<a href="/forum/?r=categoria/exclui&id=<?=$val["idCategoria"]?>" class="btn btn-xs btn-danger">Excluir</a>
 									<?php
@@ -96,7 +97,7 @@
 											<div class="col-md-1">
 											
 												<?php
-			                                        if($tipo < 3) {
+			                                        if($_SESSION['login']->getTipo() < 3) {
 			                					?>
 			                							<a href="/forum/?r=forum/edita&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 												<?php
@@ -108,7 +109,7 @@
 											<div class="col-md-1">
 											
 												<?php
-			                                        if($tipo < 2) {
+			                                        if($_SESSION['login']->getTipo() < 2) {
 			                					?>
 			                							<a href="/forum/?r=forum/exclui&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-danger">Excluir</a>
 												<?php
