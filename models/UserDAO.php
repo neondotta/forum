@@ -98,7 +98,7 @@ class UserDAO extends DAO{
             $user->setDataNascimento($dadosUser['dataNascimento']);
             $user->setTipo($dadosUser['tipo']);
         
-            
+            session_start();
             $_SESSION['login'] = $user;
             return true;
         }
