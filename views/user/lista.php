@@ -20,8 +20,8 @@
 				</div>	
 						
 				<?php
-					<?foreach ($lista as $user): ?>
-					?>
+					foreach ($lista as $user):
+				?>
 
 						<ul class="list-group">
 
@@ -46,7 +46,7 @@
 						</ul>
 					<?php
 							endforeach;
-			         } ?>		            		
+			        ?>		            		
 	            		
 		        </div>	              
 
