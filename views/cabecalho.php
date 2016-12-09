@@ -15,6 +15,7 @@
 
 		<?php
 			global $tipo;
+			if($_SESSION):
 		?>
 
 
@@ -70,4 +71,7 @@
 		    	</div><!--/.nav-collapse -->
 			</div>
 		</nav>	
+		<?php
+			endif;
+		?>
 

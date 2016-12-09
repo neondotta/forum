@@ -42,7 +42,6 @@ if (is_array($requisicao) && (count($requisicao) == 2)) {
     if($acao != "login") {
         require_once 'views/session.php';
     }
-    
     	require_once 'views/cabecalho.php';
     	eval('$controlador = new '.$nomeControlador.'Controller();');
     	eval('$controlador->'.$acao.'();');
