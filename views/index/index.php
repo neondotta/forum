@@ -22,7 +22,7 @@
 									<?=$val["nome"]?>	
 								</div>
 								
-								<div class="col-md-2">
+<!-- 								<div class="col-md-2">
 											
 									<?php
 		                        		if(!empty($val["foruns"])) {
@@ -41,7 +41,7 @@
 											<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 										</div>
 
-                				</div>
+                				</div> -->
 
 
 								<div class="col-md-1">
