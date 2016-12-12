@@ -10,8 +10,8 @@
         <?php
             endif;
         ?>
-
-        <input type="hidden" name="idForum" value="">
+        <input type="hidden" name="idForum" id="idForum" value="<?php echo $_GET['forum']; ?>">
+        <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['login']->getIdUser(); ?>">
 
         <div class="form-group">
             <label for="titulo">Título</label>
@@ -22,6 +22,7 @@
             <label for="texto">Texto</label>
             <textarea name="texto" class="form-control" id="texto" placeholder="Preencha o texto"><?=isset($topico) ? $topico->getPost()->getTexto() : ""?></textarea>
         </div>
+
 
         <div class="form-inline">
             <a href="/forum/" class="btn btn-default">Cancelar</a>

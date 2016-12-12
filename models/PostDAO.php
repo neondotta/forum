@@ -3,6 +3,7 @@ class PostDAO extends DAO
 {
 
     public function insere(Post $post) {
+
         $sql = "INSERT INTO post
                     (titulo, texto, dataCriacao, idUser, idTopico)
                 VALUES

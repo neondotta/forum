@@ -22,7 +22,7 @@
 									<?=$val["nome"]?>	
 								</div>
 								
-<!-- 								<div class="col-md-2">
+<!--								<div class="col-md-2">
 											
 									<?php
 		                        		if(!empty($val["foruns"])) {
@@ -41,15 +41,19 @@
 											<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 										</div>
 
-                				</div> -->
+                				</div>
 
 
+                				<?php
+                					endforeach;
+                				}
+                				?> -->
 								<div class="col-md-1">
 											
 									<?php
                                         if($_SESSION['login']->getTipo() < 3) {
                 					?>
-                							<a href="/forum/?r=categoria/edita&id=<?=$val["idCategoria"]?>" class="btn btn-xs btn-default">Editar</a>
+                							<a href="/forum/?r=categoria/edita&id=<?=$val["idCategoria"] ?>" class="btn btn-xs btn-default">Editar</a>
 									<?php
 										}
 									?>
@@ -67,11 +71,7 @@
 									?>
 									
                 				</div>
-                				<?php
-                					endforeach;
-                				}
-                				?>
-							</div>				
+							</div>		
 
 						</div>	
 						
