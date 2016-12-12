@@ -11,11 +11,13 @@ class PostDAO extends DAO
 
         $query = $this->db()->prepare($sql);
 
+        $login = $_SESSION["login"];
+
         // @todo
         $query->execute(array(
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
-            ':idUser' => $post->getUser() ? $post->getUser()->getIdUser() : null,
+            ':idUser' => $login->getIdUser(),
             ':idTopico' => $post->getTopico() ? $post->getTopico()->getIdTopico() : null
         ));
 

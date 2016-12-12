@@ -2,10 +2,26 @@ body{
 	padding: 70px 0px 30px
 }
 
-div.login{
-	width:50%;
+div.login {
+	float: none;
 	margin:0 auto;
+	width:50%;
 }
-input.login{
+
+input.login {
 	width: 100%;
 }
+
+.button-side {margin-right: 15px;}
+
+.topic {}
+	.topic .topic-author-post {}
+		.topic .topic-author-post h2 {
+			margin: 10px;
+		}
+
+.post {}
+	.post .post-author {
+		border-right: 1px solid rgba(0, 0, 0, 0.1);
+		min-height: 100px;
+	}

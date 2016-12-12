@@ -23,7 +23,12 @@
                 <?php
                     foreach ($categorias as $key => $val):
                 ?>
-                        <option value="<?=$val->getIdCategoria()?>" <?=isset($forum) && ($forum->getCategoria()->getIdCategoria() == $val->getIdCategoria()) ? "selected" : ""?>><?=$val->getNome()?></option>
+                        <option
+                            value="<?=$val->getIdCategoria()?>"
+                            <?=(isset($forum) && ($forum->getCategoria()->getIdCategoria() == $val->getIdCategoria())) || (isset($catId) && $catId == $val->getIdCategoria())  ? "selected" : ""?>
+                        >
+                            <?=$val->getNome()?>
+                        </option>
                 <?php
                     endforeach;
                 ?>

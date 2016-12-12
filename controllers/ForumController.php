@@ -30,8 +30,11 @@ class ForumController {
 
             $mensagem = "Usuário salvo com sucesso";
             require_once __DIR__."/../views/mensagem.php";
-        }
-        else{
+        } else {
+            if(isset($_GET["catId"])) {
+                $catId = $_GET["catId"];
+            }
+
             $categoriaDAO = new CategoriaDAO();
 
             $categorias = $categoriaDAO->getLista();

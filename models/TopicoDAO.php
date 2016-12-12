@@ -23,9 +23,9 @@ class TopicoDAO extends DAO {
                     p.dataAtualizacao,
                     u.nome
                 FROM topico t
-                    LEFT JOIN post p
+                    JOIN post p
                         USING(idPost)
-                    LEFT JOIN user u
+                    JOIN user u
                         USING(idUser)
                 WHERE t.idForum = :idForum
                 ORDER BY p.dataAtualizacao DESC";
@@ -49,8 +49,6 @@ class TopicoDAO extends DAO {
         return $listaTopico;
     }
 
-    /*    CONTINUAR DAQUI     */
-
     public function getTopico($id) {
         $sql = "SELECT
                     t.idPost,
@@ -58,10 +56,13 @@ class TopicoDAO extends DAO {
                     t.idTopico,
                     p.texto,
                     p.titulo,
-                    p.dataAtualizacao
+                    p.dataAtualizacao,
+                    u.nome
                 FROM topico t
-                INNER JOIN post p
+                JOIN post p
                     USING(idPost)
+                JOIN user u
+                    USING(idUser)
                 WHERE t.idTopico = :id";
 
         $query = $this->db()->prepare($sql);
@@ -70,8 +71,7 @@ class TopicoDAO extends DAO {
 
         $dadosTopico = $query->fetch();
 
-        // @todo Modificar usuário
-        $post = new Post($dadosTopico["titulo"], new User("eduardo"));
+        $post = new Post($dadosTopico["titulo"], new User($dadosTopico["nome"]));
         $post->setTexto($dadosTopico["texto"]);
         $post->setIdPost($dadosTopico["idPost"]);
         $post->setDataAtualizacao($dadosTopico["dataAtualizacao"]);
