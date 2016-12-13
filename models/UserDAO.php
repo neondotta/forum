@@ -28,7 +28,6 @@ class UserDAO extends DAO{
 
         return $this->db()->lastInsertId();
 
-        var_dump($query);
     }
 
 
