@@ -21,15 +21,22 @@
 	      <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="Preencha a data de nascimento" value="<?=isset($id) ? $user->getDataNascimento() : ""?>">
 	    </div>
 
-				
+	    <?php
+	    	global $tipo;
+
+	    	if($tipo < 4):
+	    ?>
 		<div class="form-group">
       		<label for="tipo">Tipo</label>
       		<select class="form-control" id="tipo" name="tipo">
-        		<option value="3" <?=isset($id) == $user->getTipo() ? "selected" :""?> >Usuário</option>        		
+        		<option value="3" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Usuário</option>        		
         		<option value="2" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Moderador</option>
         		<option value="1" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Administrador</option>
       		</select>
       	</div>
+      	<?php else: ?>
+      		<input type="hidden" name="tipo" value="3">
+  		<?php endif; ?>
 
      	<div class="form-group">
 	  		<label for="senha">Senha:</label>
