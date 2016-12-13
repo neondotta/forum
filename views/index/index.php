@@ -15,11 +15,11 @@
 								</div>
 
 								<div class="col-md-4">
-									<?php if($_SESSION['login']->getTipo() < 3): ?>
+									<?php if($tipo < 3): ?>
 										<div class="btn-group pull-right" role="group">
 											<a href="/forum/?r=categoria/edita&id=<?=$key?>" class="btn btn-xs btn-default">Editar</a>
 
-											<?php if($_SESSION['login']->getTipo() < 2): ?>
+											<?php if($tipo < 2): ?>
 		                							<a href="/forum/?r=categoria/exclui&id=<?=$key?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 											<?php endif; ?>
 										</div>
@@ -45,11 +45,11 @@
 											<div class="col-md-3">Autor: <?=!empty($v->getUserUltimoPost()) ? $v->getUserUltimoPost() : "Nenhum tópico"?></div>
 
 											<div class="col-md-2">
-												<?php if($_SESSION['login']->getTipo() < 3): ?>
+												<?php if($tipo < 3): ?>
 													<div class="btn-group pull-right" role="group">
 														<a href="/forum/?r=forum/edita&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 
-														<?php if($_SESSION['login']->getTipo() < 2): ?>
+														<?php if($tipo < 2): ?>
 															<a href="/forum/?r=forum/exclui&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 														<?php endif; ?>
 													</div>

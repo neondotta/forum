@@ -3,18 +3,23 @@
 class UserController {
 
 	public function cadastra() {
-        if (isset($_POST["nome"], $_POST["senha"], $_POST["dataNascimento"])) {
+        if (isset($_POST["nome"],$_POST["email"], $_POST["senha"], $_POST["dataNascimento"])) {
             $user = new User();
             $user->setNome($_POST["nome"]);
+            $user->setEmail($_POST["email"]);
+            $user->setSenha($_POST["senha"]);
+            $user->setDataNascimento($_POST["dataNascimento"]);
+            $user->setTipo($_POST["tipo"]);
+            //var_dump($_POST);exit;
 
             $dao = new UserDAO();
             $dao->insere($user);
-
             $mensagem = "Usuário salvo com sucesso";
             require_once __DIR__."/../views/mensagem.php";
         } else {
             $user = new User();
             require_once __DIR__."/../views/user/formCadastro.php";
+            // var_dump($_POST);die;
         }
 	}
 
@@ -43,7 +48,7 @@ class UserController {
         $lista = $dao->getLista();
 
         if (!empty($lista)) {
-            require_once __DIR__."/../views/user/lista.php";
+            require_once __DIR__."/../views/user/index.php";
         } else {
             $mensagem = "Nenhum usuário cadastrado";
             require_once __DIR__."/../views/mensagem.php";
@@ -51,10 +56,14 @@ class UserController {
     }
 
     public function edita() {
-        if (isset($_POST["idUser"], $_POST["nome"])) {
+        if (isset($_POST["idUser"], $_POST["nome"],$_POST["email"], $_POST["senha"], $_POST["dataNascimento"])) {
             $user = new User();
             $user->setIdUser($_POST["idUser"]);
             $user->setNome($_POST["nome"]);
+            $user->setEmail($_POST["email"]);
+            $user->setSenha($_POST["senha"]);
+            $user->setDataNascimento($_POST["dataNascimento"]);
+            $user->setTipo($_POST["tipo"]);
 
             $dao = new UserDAO();
 
@@ -70,15 +79,16 @@ class UserController {
 
             $dao = new UserDAO();
             $user = $dao->getUser($id);
-
             require_once __DIR__."/../views/user/formCadastro.php";
+            echo '<pre>';   
+            var_dump($_POST);exit;
         }
     }
 
     public function exclui() {
         $id = $_GET["id"];
 
-        $dao = new UserrDAO();
+        $dao = new UserDAO();
 
         if ($user = $dao->excluiUser($id)) {
             $mensagem = "Excluído com sucesso";

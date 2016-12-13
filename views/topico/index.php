@@ -75,6 +75,12 @@
 	<?php
 		}
 
-		require_once "views/post/formCadastro.php";
+		if($tipo < 4):
+			require_once "views/post/formCadastro.php";
+		else:
+	?>
+			<h3>Você precisa estar logado para responder a este tópico! <a href="/forum/?r=index/login" class="btn btn-success">Login</a></h3>
+	<?php
+		endif;
 	?>
 </div>

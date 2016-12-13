@@ -28,7 +28,6 @@ class UserDAO extends DAO{
 
         return $this->db()->lastInsertId();
 
-        var_dump($query);
     }
 
 
@@ -110,8 +109,13 @@ class UserDAO extends DAO{
         $sql = "update user
                 set
                     nome = :nome,
-                    email = :email,
-                    senha = :senha,
+                    email = :email,";
+
+        if(!empty($user->getSenha())){            
+            $sql .= "senha = :senha,";
+        }
+
+        $sql .= "
                     dataNascimento = :dataNascimento,
                     tipo = :tipo
                 where
@@ -119,14 +123,18 @@ class UserDAO extends DAO{
 
         $query = $this->db()->prepare($sql);
 
-        return $query->execute(array(
-            ':id' => $user->getIdUser(),
-            ':nome' => $user->getNome(),
-            ':email' => $user->getEmail(),
-            ':senha' => $user->getSenha(),
-            ':dataNascimento' => $user->getDataNascimento(),
-            ':tipo' => $user->getTipo()
-        ));
+        $query->bindParam(':id', $user->getIdUser(), PDO::PARAM_INT);
+        $query->bindParam(':nome', $user->getNome(), PDO::PARAM_STR);
+        $query->bindParam(':dataNascimento', $user->getdataNascimento(), PDO::PARAM_STR);
+        $query->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
+
+        if(!empty($user->getSenha())){
+            $query->bindParam(':senha', md5($user->getSenha()), PDO::PARAM_STR);
+        }
+        
+        $query->bindParam(':tipo', $user->getTipo(), PDO::PARAM_INT);
+
+        return $query->execute();
 
     }
 

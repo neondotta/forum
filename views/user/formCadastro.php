@@ -3,38 +3,47 @@
   
   <h2>Cadastro do Usuário</h2>
 
-	<form method="post">
+	 <form action="#" method="post">
 
 
 		<div class="form-group">
 	  		<label for="nome">Nome</label>
-	  		<input type="text" class="form-control" id="nome" placeholder="Preencha o nome">
+	  		<input type="text" class="form-control" id="nome" name="nome" placeholder="Preencha o nome" value="<?=isset($id) ? $user->getNome() : ""?>">
 		</div>
 
 	    <div class="form-group">
 	      <label for="email">Email</label>
-	      <input type="email" class="form-control" id="email" placeholder="Preencha o email">
+	      <input type="email" class="form-control" id="email" name="email" placeholder="Preencha o email" value="<?=isset($id) ? $user->getEmail() : ""?>">
 	    </div>
 
 	    <div class="form-group">
 	      <label for="dataNascimento">Data Nascimento</label>
-	      <input type="date" class="form-control" id="dataNascimento" placeholder="Preencha a data de nascimento">
+	      <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="Preencha a data de nascimento" value="<?=isset($id) ? $user->getDataNascimento() : ""?>">
 	    </div>
 
-				
+	    <?php
+	    	global $tipo;
+
+	    	if($tipo < 4):
+	    ?>
 		<div class="form-group">
       		<label for="tipo">Tipo</label>
       		<select class="form-control" id="tipo" name="tipo">
-        		<option value="1">Administrador</option>
-        		<option value="2">Moderador</option>
-        		<option value="3">Usuário</option>        		
+        		<option value="3" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Usuário</option>        		
+        		<option value="2" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Moderador</option>
+        		<option value="1" <?=isset($id) == $user->getTipo() ? "selected" :""?>>Administrador</option>
       		</select>
       	</div>
+      	<?php else: ?>
+      		<input type="hidden" name="tipo" value="3">
+  		<?php endif; ?>
 
      	<div class="form-group">
 	  		<label for="senha">Senha:</label>
-	  		<input type="password" class="form-control" id="senha" placeholder="Preencha a senha">
+	  		<input type="password" class="form-control" id="senha" name="senha" placeholder="Preencha a senha">
 		</div>
+
+		<input type="hidden" class="form-control" id="idUser" name="idUser" value="<?=isset($id) ? $user->getIdUser() : ""?>">
 
 		<div class="form-inline">
 

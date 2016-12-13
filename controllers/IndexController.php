@@ -16,4 +16,8 @@ class IndexController {
 
 		require_once __DIR__.'/../views/index/index.php';
 	}
+
+	public function login() {
+		require_once __DIR__.'/../views/login.php';	
+	}
 }
