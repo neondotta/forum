@@ -22,6 +22,8 @@
 	</div>
 
 	<?php
+		global $tipo;
+
 		if (!empty($posts)) {
 			foreach ($posts as $key => $post):
 	?>
@@ -36,8 +38,6 @@
 
 									<div class="col-xs-4">
 										<?php
-							        		global $tipo;
-
 							        		if($tipo < 3) {
 										?>
 											<div class="btn-group pull-right" role="group">
