@@ -36,7 +36,7 @@
 						</ul>
 
 						<ul class="nav navbar-nav pull-right">
-							<li class="dropdown pull-right">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 									<?=$_SESSION["login"]->getNome()?> <span class="caret"></span>
 								</a>
@@ -51,7 +51,12 @@
 					else:
 				?>
 						<ul class="nav navbar-nav pull-right">
-							<li class="dropdown pull-right">
+							<li class="dropdown">
+								<a href="/forum/?r=user/cadastra">
+									Cadastro
+								</a>
+							</li>
+							<li class="dropdown">
 								<a href="/forum/?r=index/login">
 									Login
 								</a>
