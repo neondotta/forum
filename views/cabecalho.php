@@ -23,7 +23,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Fórum PHP</a>
+						<a class="navbar-brand" href="/forum/">Fórum PHP</a>
 					</div>
 
 					<div id="navbar" class="navbar-collapse collapse">
@@ -34,7 +34,9 @@
 							<li><a href="/forum/?r=user/lista">Usuários</a></li>
 							<li><a href="/forum/?r=categoria/cadastra">Categorias</a></li>
 							<?php } ?>
+						</ul>
 
+						<ul class="nav navbar-nav pull-right">
 							<li class="dropdown pull-right">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 									<?=$_SESSION["login"]->getNome()?> <span class="caret"></span>

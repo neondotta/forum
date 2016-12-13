@@ -29,23 +29,27 @@
 					<div class="col-md-12 topic-author-post">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4>Título: <?=$post->getTitulo()?></h4>
+								<div class="row">
+									<div class="col-xs-8">
+										<h4>Título: <?=$post->getTitulo()?></h4>
+									</div>
 
-								<?php
-					        		global $tipo;
+									<div class="col-xs-4">
+										<?php
+							        		global $tipo;
 
-					        		if($tipo < 3) {
-								?>
-										<a href="/forum/?r=topico/edita&id=<?=$post->getIdPost()?>">Editar</a>
+							        		if($tipo < 3) {
+										?>
+											<div class="btn-group pull-right" role="group">
+												<a href="/forum/?r=topico/edita&id=<?=$post->getIdPost()?>" class="btn btn-xs btn-default">Editar</a>
 
-									<?php
-										if($tipo < 2) {
-									?>
-											<a href="/forum/?r=topico/exclui&id=<?=$post->getIdPost()?>">Excluir</a>
-									<?php
-										}
-					        		}
-					        	?>
+											<?php if($tipo < 2) { ?>
+													<a href="/forum/?r=topico/exclui&id=<?=$post->getIdPost()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
+											<?php } ?>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
 							</div>
 
 							<div class="panel-body">
@@ -70,5 +74,7 @@
 			<div>Nenhuma resposta para este tópico</div>
 	<?php
 		}
+
+		require_once "views/post/formCadastro.php";
 	?>
 </div>

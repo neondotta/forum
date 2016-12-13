@@ -1,9 +1,7 @@
 <?php
-class PostDAO extends DAO
-{
+class PostDAO extends DAO {
 
     public function insere(Post $post) {
-
         $sql = "INSERT INTO post
                     (titulo, texto, dataCriacao, idUser, idTopico)
                 VALUES
@@ -11,13 +9,10 @@ class PostDAO extends DAO
 
         $query = $this->db()->prepare($sql);
 
-        $login = $_SESSION["login"];
-
-        // @todo
         $query->execute(array(
             ':titulo' => $post->getTitulo(),
             ':texto' => $post->getTexto(),
-            ':idUser' => $login->getIdUser(),
+            ':idUser' => $post->getUser()->getIdUser(),
             ':idTopico' => $post->getTopico() ? $post->getTopico()->getIdTopico() : null
         ));
 

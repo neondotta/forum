@@ -20,7 +20,7 @@
 											<a href="/forum/?r=categoria/edita&id=<?=$key?>" class="btn btn-xs btn-default">Editar</a>
 
 											<?php if($_SESSION['login']->getTipo() < 2): ?>
-		                							<a href="/forum/?r=categoria/exclui&id=<?=$key?>" class="btn btn-xs btn-danger">Excluir</a>
+		                							<a href="/forum/?r=categoria/exclui&id=<?=$key?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 											<?php endif; ?>
 										</div>
 
@@ -50,7 +50,7 @@
 														<a href="/forum/?r=forum/edita&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 
 														<?php if($_SESSION['login']->getTipo() < 2): ?>
-															<a href="/forum/?r=forum/exclui&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-danger">Excluir</a>
+															<a href="/forum/?r=forum/exclui&id=<?=$v->getIdForum()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 														<?php endif; ?>
 													</div>
 												<?php endif; ?>

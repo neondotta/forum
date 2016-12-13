@@ -99,7 +99,7 @@ class TopicoDAO extends DAO {
     public function exclui($id){
         $postDAO = new PostDAO();
 
-		$posts = $postDAO->getLista($id);
+		$posts = $postDAO->getLista($id, null);
 
 		if(!empty($posts)) {
 			foreach ($posts as $key => $v) {

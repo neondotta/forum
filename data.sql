@@ -28,7 +28,7 @@ CREATE TABLE `categoria` (
 
 /*Data for the table `categoria` */
 
-insert  into `categoria`(`idCategoria`,`nome`) values (1,'Fantasmas');
+insert  into `categoria`(`idCategoria`,`nome`) values (1,'Futebol');
 insert  into `categoria`(`idCategoria`,`nome`) values (2,'Carros');
 insert  into `categoria`(`idCategoria`,`nome`) values (3,'Floresta');
 
@@ -47,8 +47,7 @@ CREATE TABLE `forum` (
 
 /*Data for the table `forum` */
 
-insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (1,'Fantasmas camaradas',1);
-insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (2,'Fantasmas malvadões',1);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (1,'Jogadores',1);
 insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (3,'Carros tunadões',2);
 insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (4,'Carros show',2);
 insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (5,'Carros sem rodas',2);
@@ -68,11 +67,14 @@ CREATE TABLE `post` (
   PRIMARY KEY (`idPost`),
   KEY `fk_post_user1_idx` (`idUser`),
   KEY `fk_post_topico1_idx` (`idTopico`),
-  CONSTRAINT `fk_post_topico1` FOREIGN KEY (`idTopico`) REFERENCES `topico` (`idTopico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_topico1` FOREIGN KEY (`idTopico`) REFERENCES `topico` (`idTopico`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_post_user1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `post` */
+
+insert  into `post`(`idPost`,`titulo`,`texto`,`dataCriacao`,`dataAtualizacao`,`idUser`,`idTopico`) values (3,'Melhor jogador 2016','Este tópico é para comentar sobre a vitória do famoso jogador.','2016-12-13 16:57:55','2016-12-13 16:57:55',1,3);
+insert  into `post`(`idPost`,`titulo`,`texto`,`dataCriacao`,`dataAtualizacao`,`idUser`,`idTopico`) values (4,'Mentira','MENTIRA! Ninguém ganhou o prêmio de melhor jogador de 2016.','2016-12-13 16:58:18','2016-12-13 16:58:18',1,3);
 
 /*Table structure for table `topico` */
 
@@ -85,11 +87,13 @@ CREATE TABLE `topico` (
   PRIMARY KEY (`idTopico`),
   KEY `fk_topico_forum1_idx` (`idForum`),
   KEY `fk_post_forum1_idx` (`idPost`),
-  CONSTRAINT `fk_post_forum1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_forum1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_topico_forum1` FOREIGN KEY (`idForum`) REFERENCES `forum` (`idForum`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `topico` */
+
+insert  into `topico`(`idTopico`,`idForum`,`idPost`) values (3,1,3);
 
 /*Table structure for table `user` */
 

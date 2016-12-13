@@ -11,10 +11,10 @@
 						<div class="col-md-4">
 							<?php if($_SESSION['login']->getTipo() < 3): ?>
 								<div class="btn-group pull-right" role="group">
-									<a href="/forum/?r=categoria/edita&id=<?=$forum->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
+									<a href="/forum/?r=forum/edita&id=<?=$forum->getIdForum()?>" class="btn btn-xs btn-default">Editar</a>
 
 									<?php if($_SESSION['login']->getTipo() < 2): ?>
-											<a href="/forum/?r=categoria/exclui&id=<?=$forum->getIdForum()?>" class="btn btn-xs btn-danger">Excluir</a>
+											<a href="/forum/?r=forum/exclui&id=<?=$forum->getIdForum()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 									<?php endif; ?>
 								</div>
 							<?php endif; ?>
@@ -47,7 +47,7 @@
 													<a href="/forum/?r=topico/edita&id=<?=$topico->getIdTopico()?>" class="btn btn-xs btn-default">Editar</a>
 
 													<?php if($_SESSION['login']->getTipo() < 2): ?>
-				                							<a href="/forum/?r=topico/exclui&id=<?=$topico->getIdTopico()?>" class="btn btn-xs btn-danger">Excluir</a>
+				                							<a href="/forum/?r=topico/exclui&id=<?=$topico->getIdTopico()?>&forum=<?=$forum->getIdForum()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 													<?php endif; ?>
 												</div>
 											<?php endif; ?>

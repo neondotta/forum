@@ -39,7 +39,7 @@
 	                				</div>
 
 									<div class="col-md-1">
-	              						<a href="/forum/?r=user/exclui&id=<?=$user->getIdUser()?>" class="btn btn-xs btn-danger">Excluir</a>										
+	              						<a href="/forum/?r=user/exclui&id=<?=$user->getIdUser()?>" class="btn btn-xs btn-danger confirm">Excluir</a>										
 	                				</div>
 								</div>
 							</li>

@@ -1,7 +1,7 @@
 <?php
 class ForumController {
     public function index() {
-        if (isset($_GET["id"])) {
+        if (isset($_GET["id"]) && !empty($_GET["id"])) {
             $id = $_GET["id"];
 
             $forumDAO = new ForumDAO();
@@ -28,7 +28,7 @@ class ForumController {
             $dao = new ForumDAO();
             $dao->insere($forum);
 
-            $mensagem = "Usuário salvo com sucesso";
+            $mensagem = "Fórum adicionado com sucesso!";
             require_once __DIR__."/../views/mensagem.php";
         } else {
             if(isset($_GET["catId"])) {
@@ -56,7 +56,7 @@ class ForumController {
             if ($forumDAO->atualiza($forum)){
                 $mensagem = "Fórum atualizado com sucesso!";
             } else {
-                $mensagem = "Ocorreu um erro";
+                $mensagem = "Erro ao editar o fórum.";
             }
 
             require_once __DIR__."/../views/mensagem.php";
@@ -78,10 +78,12 @@ class ForumController {
 
         $forumDAO = new ForumDAO();
 
+        $redirect = "";
+
         if($forumDAO->exclui($id)) {
             $mensagem = "Fórum excluído com sucesso!";
         } else {
-            $mensagem = "Problemas";
+            $mensagem = "Erro ao excluir o fórum.";
         }
 
         require_once __DIR__."/../views/mensagem.php";
