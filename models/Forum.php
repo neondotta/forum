@@ -4,6 +4,7 @@ class Forum {
     protected $idForum;
     protected $nome;
 	protected $categoria;
+    protected $userUltimoPost;
 
     function __construct($nome='', $categoria=''){
         $this->setNome($nome);
@@ -50,4 +51,16 @@ class Forum {
 
         return $this;
     }
+
+    public function setUserUltimoPost($userUltimoPost)
+    {
+        $this->userUltimoPost = $userUltimoPost;
+
+    }
+
+    public function getUserUltimoPost() {
+        return $this->userUltimoPost;
+    }
+
+
 }

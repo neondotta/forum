@@ -1,6 +1,7 @@
 <?php
 
 class ForumDAO extends DAO {
+	
 	public function insere(Forum $forum) {
 		$sql = "INSERT INTO forum
 					(nome, idCategoria)
@@ -19,7 +20,7 @@ class ForumDAO extends DAO {
 	}
 
 	public function getLista($categoria = '') {
-		$sql = "SELECT f.idForum, f.nome AS forumNome, f.idCategoria, c.nome
+		$sql = "SELECT f.idForum, f.nome AS forumNome, f.idCategoria, c.nome, (select u.nome from post p, topico t, user u where t.idTopico = p.idTopico and u.idUser = p.idUser and t.idForum = f.idForum order by p.idPost desc limit 1) as userUltimoPost
 				FROM forum f
 				INNER JOIN categoria c
 					USING (idCategoria)";
@@ -46,6 +47,7 @@ class ForumDAO extends DAO {
 
 			$forum = new Forum($dadosForum['forumNome'], $categoria);
 			$forum->setIdForum($dadosForum['idForum']);
+			$forum->setUserUltimoPost($dadosForum['userUltimoPost']);
 
 			array_push($listaForum, $forum);
 		}
@@ -54,7 +56,8 @@ class ForumDAO extends DAO {
 	}
 
     public function getForum($id){
-    	$sql = "SELECT f.idForum, f.nome AS nomeForum, c.idCategoria, c.nome
+    	$sql = "SELECT f.idForum, f.nome AS nomeForum, c.idCategoria, c.nome, 
+    				(select u.nome from post p, topico t, user u where t.idTopico = p.idTopico and u.idUser = p.idUser and t.idForum = f.idForum order by p.idPost desc limit 1) as userUltimoPost
     			FROM forum f
     			INNER JOIN categoria c
     				USING(idCategoria)
@@ -72,6 +75,7 @@ class ForumDAO extends DAO {
 
     	$forum = new Forum($dadosForum['nomeForum'], $categoria);
     	$forum->setIdForum($dadosForum['idForum']);
+    	$forum->setUserUltimoPost($dadosForum['userUltimoPost']);
 
     	return $forum;
     }

@@ -42,7 +42,7 @@
 												<a href="/forum/?r=forum/index&id=<?=$v->getIdForum()?>"><?=$v->getNome()?></a>
 											</div>
 
-											<div class="col-md-3">Usuário</div>
+											<div class="col-md-3">Autor: <?=!empty($v->getUserUltimoPost()) ? $v->getUserUltimoPost() : "Nenhum tópico"?></div>
 
 											<div class="col-md-2">
 												<?php if($_SESSION['login']->getTipo() < 3): ?>

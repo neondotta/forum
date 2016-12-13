@@ -38,6 +38,8 @@ class PostController {
 
         $postDAO = new postDAO();
 
+        $redirect = "?r=topico/index&id={$_GET['topico']}";
+
         if ($postDAO->exclui($id)) {
             $mensagem = "Post excluído com sucesso!";
         } else {

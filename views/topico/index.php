@@ -41,10 +41,10 @@
 							        		if($tipo < 3) {
 										?>
 											<div class="btn-group pull-right" role="group">
-												<a href="/forum/?r=topico/edita&id=<?=$post->getIdPost()?>" class="btn btn-xs btn-default">Editar</a>
+												<!-- <a href="/forum/?r=topico/edita&id=<?=$post->getIdPost()?>" class="btn btn-xs btn-default">Editar</a> -->
 
 											<?php if($tipo < 2) { ?>
-													<a href="/forum/?r=topico/exclui&id=<?=$post->getIdPost()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
+													<a href="/forum/?r=post/exclui&id=<?=$post->getIdPost()?>&topico=<?=$topico->getIdTopico()?>" class="btn btn-xs btn-danger confirm">Excluir</a>
 											<?php } ?>
 											</div>
 										<?php } ?>
