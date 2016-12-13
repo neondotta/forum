@@ -3,8 +3,8 @@
 session_start();
 // session_destroy();
 
-if(!$_SESSION['login']){
-	header('Location: views/login.php');
-}
+// if(!$_SESSION['login']){
+// 	header('Location: views/login.php');
+// }
 
 ?>
