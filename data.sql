@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.7.9 : Database - forum
+MySQL - 5.7.11 : Database - forum
 *********************************************************************
 */
 
@@ -28,7 +28,9 @@ CREATE TABLE `categoria` (
 
 /*Data for the table `categoria` */
 
-insert  into `categoria`(`idCategoria`,`nome`) values (1,'Categoria show'),(2,'Categoria da Ingrid'),(3,'Categoria da Indis');
+insert  into `categoria`(`idCategoria`,`nome`) values (1,'Fantasmas');
+insert  into `categoria`(`idCategoria`,`nome`) values (2,'Carros');
+insert  into `categoria`(`idCategoria`,`nome`) values (3,'Floresta');
 
 /*Table structure for table `forum` */
 
@@ -41,11 +43,15 @@ CREATE TABLE `forum` (
   PRIMARY KEY (`idForum`),
   KEY `fk_forum_categoria1_idx` (`idCategoria`),
   CONSTRAINT `fk_forum_categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `forum` */
 
-insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (1,'FÃ³rum show',1),(2,'Forum ok',1),(3,'Manchas na barriga',3),(4,'Fórum showzão',1);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (1,'Fantasmas camaradas',1);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (2,'Fantasmas malvadões',1);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (3,'Carros tunadões',2);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (4,'Carros show',2);
+insert  into `forum`(`idForum`,`nome`,`idCategoria`) values (5,'Carros sem rodas',2);
 
 /*Table structure for table `post` */
 
@@ -64,11 +70,9 @@ CREATE TABLE `post` (
   KEY `fk_post_topico1_idx` (`idTopico`),
   CONSTRAINT `fk_post_topico1` FOREIGN KEY (`idTopico`) REFERENCES `topico` (`idTopico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_post_user1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `post` */
-
-insert  into `post`(`idPost`,`titulo`,`texto`,`dataCriacao`,`dataAtualizacao`,`idUser`,`idTopico`) values (1,'TÃ³pico show de buela','textÃ£o da porra','2016-12-12 20:24:21','2016-12-12 20:24:21',1,1),(2,'Titulo show 200','texto show\r\n','2016-12-12 20:30:13','2016-12-12 20:30:13',1,2),(3,'Quais as melhores manchas?','Eu acho que a melhor mancha Ã© a que estÃ£o de baixo da primeira dobrinha depois dos seios. E vocÃªs?\r\n','2016-12-12 20:49:24','2016-12-12 20:49:24',1,3);
 
 /*Table structure for table `topico` */
 
@@ -83,11 +87,9 @@ CREATE TABLE `topico` (
   KEY `fk_post_forum1_idx` (`idPost`),
   CONSTRAINT `fk_post_forum1` FOREIGN KEY (`idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_topico_forum1` FOREIGN KEY (`idForum`) REFERENCES `forum` (`idForum`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `topico` */
-
-insert  into `topico`(`idTopico`,`idForum`,`idPost`) values (1,1,1),(2,1,2),(3,3,3);
 
 /*Table structure for table `user` */
 
@@ -105,7 +107,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`idUser`,`nome`,`email`,`senha`,`dataNascimento`,`tipo`) values (1,'Duduzão','e@e.com','0cc175b9c0f1b6a831c399e269772661','2016-12-08',1);
+insert  into `user`(`idUser`,`nome`,`email`,`senha`,`dataNascimento`,`tipo`) values (1,'Eduardo','a@a.com','0cc175b9c0f1b6a831c399e269772661','2016-12-08',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
