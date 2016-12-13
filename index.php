@@ -40,7 +40,7 @@ if (is_array($requisicao) && (count($requisicao) == 2)) {
     if($acao != "login") {
         require_once 'views/session.php';
 		
-		$tipo = $_SESSION["login"]->getTipo();
+		$tipo = isset($_SESSION["login"]) ? $_SESSION["login"]->getTipo() : 4;
     }
     	require_once 'views/cabecalho.php';
     	eval('$controlador = new '.$nomeControlador.'Controller();');
