@@ -36,6 +36,8 @@
 	  		<input type="password" class="form-control" id="senha" name="senha" placeholder="Preencha a senha">
 		</div>
 
+		<input type="hidden" class="form-control" id="idUser" name="idUser" value="<?=isset($id) ? $user->getIdUser() : ""?>">
+
 		<div class="form-inline">
 
 			<a href="/forum/" class="btn btn-default">Cancelar</a>

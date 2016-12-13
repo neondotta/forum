@@ -56,10 +56,14 @@ class UserController {
     }
 
     public function edita() {
-        if (isset($_POST["idUser"], $_POST["nome"])) {
+        if (isset($_POST["idUser"], $_POST["nome"],$_POST["email"], $_POST["senha"], $_POST["dataNascimento"])) {
             $user = new User();
             $user->setIdUser($_POST["idUser"]);
             $user->setNome($_POST["nome"]);
+            $user->setEmail($_POST["email"]);
+            $user->setSenha($_POST["senha"]);
+            $user->setDataNascimento($_POST["dataNascimento"]);
+            $user->setTipo($_POST["tipo"]);
 
             $dao = new UserDAO();
 
@@ -75,15 +79,16 @@ class UserController {
 
             $dao = new UserDAO();
             $user = $dao->getUser($id);
-
             require_once __DIR__."/../views/user/formCadastro.php";
+            echo '<pre>';   
+            var_dump($_POST);exit;
         }
     }
 
     public function exclui() {
         $id = $_GET["id"];
 
-        $dao = new UserrDAO();
+        $dao = new UserDAO();
 
         if ($user = $dao->excluiUser($id)) {
             $mensagem = "Excluído com sucesso";
