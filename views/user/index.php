@@ -13,7 +13,7 @@
 						</div>
 						
 						<div class="col-md-2">														
-	    					<a href="/forum/?r=forum/cadastra" class="btn btn-xs btn-success">Incluir</a>
+	    					<a href="/forum/?r=user/cadastra" class="btn btn-xs btn-success">Incluir</a>
 	    				</div>
 					</div>				
 
